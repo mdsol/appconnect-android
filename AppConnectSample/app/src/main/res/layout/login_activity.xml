@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/login_username_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/login_username_field_hint"
+        android:inputType="text|textEmailAddress" />
+
+    <EditText
+        android:id="@+id/login_password_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_username_field"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/login_password_field_hint"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/login_log_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_password_field"
+        android:layout_marginTop="8dp"
+        android:text="@string/login_log_in_button"
+        android:onClick="doLogInButton" />
+
+</RelativeLayout>

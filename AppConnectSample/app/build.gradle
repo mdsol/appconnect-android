@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.sample.appconnectsample"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// TODO: Revisit to point to AppConnect public repo
+repositories {
+    maven {
+        credentials {
+            username "patientcloud"
+            password "AP9vmdKS9cNxBwcfmYzEhw3bd94"
+        }
+        url 'https://etlhydra-artifactory-sandbox.imedidata.net/artifactory/p-cloud-release'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+
+    // *** AppConnect ***
+    compile 'com.mdsol:babbage:1.1@aar'
+}
