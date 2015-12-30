@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">AppConnectSample</string>
+
+    <string name="ok_button">OK</string>
+
+    <string name="field_text_format">Max length %1$s</string>
+    <string name="field_dictionary_format">Choice %1$s: %2$s</string>
+    <string name="field_discrete_format">One of %1$s</string>
+    <string name="field_scale_format">A value in the range %1$s–%2$s</string>
+
+    <string name="field_oid_label">Field OID</string>
+    <string name="field_type_label">Type</string>
+    <string name="field_header_label">Header</string>
+    <string name="field_number_label">Number</string>
+    <string name="field_label_label">Label</string>
+    <string name="field_format_label">Format</string>
+    <string name="field_problem_label">Problem</string>
+
+    <string name="list_syncing_message">Syncing…</string>
+
+    <string name="multi_page_form_previous_button">Previous</string>
+    <string name="multi_page_form_next_button">Next</string>
+    <string name="multi_page_form_submit_button">Submit</string>
+    <string name="multi_page_form_previous_failed_title">Step Back Failed</string>
+    <string name="multi_page_form_previous_failed_message">You can\'t step back if there is no previous field.</string>
+    <string name="multi_page_form_next_failed_title">Step Forward Failed</string>
+    <string name="multi_page_form_next_failed_message">You can\'t step forward if the current response is invalid or if there is no next field.</string>
+    <string name="multi_page_form_error_finish_failed_title">The response for field %1$s is invalid. Please review and try again.</string>
+    <string name="multi_page_form_error_finish_failed_message">This form requires a signature, which is not supported by this sample app.</string>
+
+    <string name="login_username_field_hint">Username</string>
+    <string name="login_password_field_hint">Password</string>
+    <string name="login_log_in_button">Log In</string>
+
+    <string name="one_page_form_submit_button">Submit</string>
+    <string name="one_page_form_submitting_message">Sending Form…</string>
+    <string name="one_page_form_error_title">Form Error</string>
+    <string name="one_page_form_error_unexpected_field_type_message">A field in the form is of an unexpected type.</string>
+    <string name="one_page_form_error_invalid_response_message">The response for field %1$s is invalid. Please review and try again.</string>
+    <string name="one_page_form_error_more_fields_message">There are more fields that need to be filled out in this form.</string>
+    <string name="one_page_form_error_finish_failed_message">This form requires a signature, which is not supported by this sample app.</string>
+
+    <string name="review_label">The form is ready to submit.</string>
+
+    <string name="login_failed_title">Login Failed</string>
+    <string name="login_failed_message">Please verify your credentials and try again.</string>
+
+    <string name="submit_failed_title">Submit Failed</string>
+    <string name="submit_failed_message">An error occurred while sending the form responses.</string>
+    <string name="submit_succeeded_title">Submit Succeeded</string>
+    <string name="submit_succeeded_message">The form responses were sent successfully!</string>
+
+    <string name="sync_failed_title">Load Failed</string>
+    <string name="sync_failed_message">An error occurred while loading the subjects and forms.</string>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MultiPageFormActivity">
+
+    <RelativeLayout
+        android:id="@+id/form_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <Button
+            android:id="@+id/form_previous_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/multi_page_form_previous_button"
+            android:onClick="doPreviousButton" />
+
+        <Button
+            android:id="@+id/form_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/multi_page_form_next_button"
+            android:onClick="doNextButton" />
+
+        <Button
+            android:id="@+id/form_submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/multi_page_form_submit_button"
+            android:onClick="doSubmitButton" />
+
+    </RelativeLayout>
+
+    <com.sample.appconnectsample.FieldPager
+        android:id="@+id/form_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/form_toolbar" />
+
+    <ProgressBar
+        android:id="@+id/form_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>
