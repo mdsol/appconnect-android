@@ -22,8 +22,10 @@ android {
 // TODO: Revisit to point to AppConnect public repo
 repositories {
 
-    def artifactory_user = "${System.getenv('ARTIFACTORY_USERNAME')}"
-    def artifactory_pass = "${System.getenv('ARTIFACTORY_PASSWORD')}"
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def artifactory_user = properties.getProperty('artifactory.username')
+    def artifactory_pass = properties.getProperty('artifactory.password')
 
     maven {
         credentials {
