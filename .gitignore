@@ -2,6 +2,8 @@
 *.apk
 *.ap_
 
+# Files for the dex VM
+*.dex
 
 # Java class files
 *.class
@@ -11,4 +13,24 @@ bin/
 gen/
 doc/
 
+# Local configuration file (sdk path, etc)
+local.properties
 
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Eclipse project files
+.classpath
+.project
+
+# Android Studio
+*.iml
+.idea
+.gradle
+build/
+
+# NDK
+obj/
