@@ -21,11 +21,16 @@ android {
 
 // TODO: Revisit to point to AppConnect public repo
 repositories {
+
+    def artifactory_user = "${System.getenv('ARTIFACTORY_USERNAME')}"
+    def artifactory_pass = "${System.getenv('ARTIFACTORY_PASSWORD')}"
+
     maven {
         credentials {
-            username "patientcloud"
-            password "AP9vmdKS9cNxBwcfmYzEhw3bd94"
+            username artifactory_user
+            password artifactory_pass
         }
+
         url 'https://etlhydra-artifactory-sandbox.imedidata.net/artifactory/p-cloud-release'
     }
 }
