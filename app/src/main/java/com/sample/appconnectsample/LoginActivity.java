@@ -35,10 +35,13 @@ public class LoginActivity extends AppCompatActivity {
         passwordField = (EditText)findViewById(R.id.login_password_field);
         logInButton = (Button)findViewById(R.id.login_log_in_button);
 
-        // TODO: Remove this block
-        Client.setEnvironment(Client.Environment.VALIDATION);
-        usernameField.setText("sub02@sqa.com");
-        passwordField.setText("Password1");
+        // Used for testing purposes - should be left as PRODUCTION in
+        // almost all cases.
+        Client.Environment env = BuildConfig.DEFAULT_ENVIRONMENT == "validation"
+                ? Client.Environment.VALIDATION : Client.Environment.PRODUCTION;
+        Client.setEnvironment(env);
+        usernameField.setText(BuildConfig.DEFAULT_USERNAME);
+        passwordField.setText(BuildConfig.DEFAULT_PASSWORD);
     }
 
     public void doLogInButton(View source) {

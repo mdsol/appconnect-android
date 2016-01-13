@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -10,6 +13,9 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "DEFAULT_USERNAME", properties.getProperty('default.username', '""')
+        buildConfigField "String", "DEFAULT_PASSWORD", properties.getProperty('default.password', '""')
+        buildConfigField "String", "DEFAULT_ENVIRONMENT", properties.getProperty('default.environment', '"production"')
     }
     buildTypes {
         release {
@@ -19,11 +25,8 @@ android {
     }
 }
 
-// TODO: Revisit to point to AppConnect public repo
 repositories {
 
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
     def artifactory_user = properties.getProperty('artifactory.username')
     def artifactory_pass = properties.getProperty('artifactory.password')
 
