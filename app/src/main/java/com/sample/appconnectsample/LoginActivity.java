@@ -36,10 +36,8 @@ public class LoginActivity extends AppCompatActivity {
         logInButton = (Button)findViewById(R.id.login_log_in_button);
 
         // Used for testing purposes - should be left as PRODUCTION in
-        // almost all cases.
-        Client.Environment env = BuildConfig.DEFAULT_ENVIRONMENT == "validation"
-                ? Client.Environment.VALIDATION : Client.Environment.PRODUCTION;
-        Client.setEnvironment(env);
+        // almost all cases
+        Client.setEnvironment(Client.Environment.valueOf(BuildConfig.DEFAULT_ENVIRONMENT.toUpperCase()));
         usernameField.setText(BuildConfig.DEFAULT_USERNAME);
         passwordField.setText(BuildConfig.DEFAULT_PASSWORD);
     }
