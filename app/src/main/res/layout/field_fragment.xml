@@ -57,24 +57,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/field_header_label"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/field_header_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:text="@string/field_number_label"
                     android:textStyle="bold" />
 

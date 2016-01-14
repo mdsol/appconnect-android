@@ -42,7 +42,6 @@ public class FieldFragment extends Fragment {
 
     private TextView oidField;
     private TextView typeField;
-    private TextView headerField;
     private TextView numberField;
     private TextView labelField;
     private TextView formatField;
@@ -76,7 +75,6 @@ public class FieldFragment extends Fragment {
 
         oidField = (TextView)v.findViewById(R.id.field_oid_field);
         typeField = (TextView)v.findViewById(R.id.field_type_field);
-        headerField = (TextView)v.findViewById(R.id.field_header_field);
         numberField = (TextView)v.findViewById(R.id.field_number_field);
         labelField = (TextView)v.findViewById(R.id.field_label_field);
         formatField = (TextView)v.findViewById(R.id.field_format_field);
@@ -117,7 +115,6 @@ public class FieldFragment extends Fragment {
         // Populate the views with the field information
         oidField.setText(field.getFieldOID());
         typeField.setText(field.getFieldType().toString());
-        headerField.setText(field.getHeader());
         numberField.setText(field.getFieldNumber());
         labelField.setText(field.getLabel());
         formatField.setText(getFormatForField(field));
