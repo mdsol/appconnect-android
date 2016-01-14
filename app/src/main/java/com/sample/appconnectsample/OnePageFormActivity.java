@@ -72,17 +72,17 @@ public class OnePageFormActivity extends AppCompatActivity {
         // to be, look at MultiPageFormActivity instead.
         for (Field field : form.getFields()) {
             String fieldOID = field.getFieldOID();
-            if (fieldOID.equals("FIELD1")) {
+            if (fieldOID.equals("TEXTFIELD1")) {
                 TextField tf = (TextField)field;
                 field1Label.setText(tf.getLabel());
                 field1Response.setHint(getString(R.string.field_text_format, tf.getMaximumResponseLength()));
             }
-            else if (fieldOID.equals("FIELD2")) {
+            else if (fieldOID.equals("NUMBERS")) {
                 NumericField nf = (NumericField)field;
                 field2Label.setText(nf.getLabel());
                 field2Response.setHint(getFormatForNumericField(nf));
             }
-            else if (fieldOID.equals("FIELD3")) {
+            else if (fieldOID.equals("NUMERICVALUE")) {
                 NumericField nf = (NumericField)field;
                 field3Label.setText(nf.getLabel());
                 field3Response.setHint(getFormatForNumericField(nf));

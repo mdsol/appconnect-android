@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // TODO: Remove this block
         Client.setEnvironment(Client.Environment.VALIDATION);
-        usernameField.setText("sub02@sqa.com");
-        passwordField.setText("Password1");
+        usernameField.setText("sdk@101.com");
+        passwordField.setText("Password90");
     }
 
     public void doLogInButton(View source) {
