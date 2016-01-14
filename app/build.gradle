@@ -15,7 +15,7 @@ android {
         versionName "1.0"
         buildConfigField "String", "DEFAULT_USERNAME", properties.getProperty('default.username', '""')
         buildConfigField "String", "DEFAULT_PASSWORD", properties.getProperty('default.password', '""')
-        buildConfigField "String", "DEFAULT_ENVIRONMENT", properties.getProperty('default.environment', '"production"')
+        buildConfigField "boolean", "VALIDATION", properties.getProperty('default.isValidation', "false")
     }
     buildTypes {
         release {
