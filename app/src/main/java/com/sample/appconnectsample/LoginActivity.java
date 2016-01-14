@@ -35,10 +35,17 @@ public class LoginActivity extends AppCompatActivity {
         passwordField = (EditText)findViewById(R.id.login_password_field);
         logInButton = (Button)findViewById(R.id.login_log_in_button);
 
-        // TODO: Remove this block
-        Client.setEnvironment(Client.Environment.VALIDATION);
-        usernameField.setText("sdk@101.com");
-        passwordField.setText("Password90");
+
+        Client.setEnvironment(Client.Environment.PRODUCTION);
+
+        // It is possible to communicate with other environments in the Medidata
+        // Platform (although in most cases Production should be used).
+        if (BuildConfig.VALIDATION) {
+            Client.setEnvironment(Client.Environment.VALIDATION);
+        }
+
+        usernameField.setText(BuildConfig.DEFAULT_USERNAME);
+        passwordField.setText(BuildConfig.DEFAULT_PASSWORD);
     }
 
     public void doLogInButton(View source) {
