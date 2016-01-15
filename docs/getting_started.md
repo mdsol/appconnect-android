@@ -47,8 +47,8 @@ User user = datastore.getUser(username);
 
 ### Important Considerations
 - Although there can be multiple Datastore instances, they are all communicating with the same persistent store (a local SQlite database).
-- Datstore instances are not thread safe. If you are creating a new thread (perhaps to make a network request asynchronously) then you should create a new Datastore to accompany it.
-- Instances loaded from a Datstore are not thread safe. Instead of passing an instance to a separate thread, pass the instance's ID (e.g. Java: `user.getID()`, Swift: `user.objectID`) and use a separate Datastore to load the instance.
+- Datastore instances are not thread-safe. If you are creating a new thread - perhaps to make a network request asynchronously - then you should create a new Datastore to accompany it.
+- Instances loaded from a Datstore are not thread-safe. Instead of passing an instance to a separate thread, pass the instance's ID - for example, Java: `user.getID()`, Swift: `user.objectID` - and use a separate Datastore to load the instance.
 
 
 ## Network Requests
@@ -65,7 +65,7 @@ List<Form> forms = loadForms(datastore, subject)
 ```
 
 ### Important Considerations
-- This example assumes the user is associated with a single subject - in reality they may have multiple.
+- This example assumes the user is associated with a single subject - in reality they may have multiple subjects associated with them.
 - The example assumes a best-case scenario where each request is successful. A robust application should have adequate error handling throughout the process.
 - In an actual app, all requests should be made asynchronously on a background thread to avoid interfering with the UI.
 - The Java network requests are not synchronous and should be performed in a background thread.
