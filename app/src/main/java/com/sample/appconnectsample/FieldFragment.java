@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import com.mdsol.babbage.model.Datastore;
@@ -24,7 +26,10 @@ import com.mdsol.babbage.model.NumericField;
 import com.mdsol.babbage.model.RaveDateFormat;
 import com.mdsol.babbage.model.ScaleField;
 import com.mdsol.babbage.model.TextField;
+
+import java.text.DateFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +47,6 @@ public class FieldFragment extends Fragment {
 
     private TextView oidField;
     private TextView typeField;
-    private TextView headerField;
     private TextView numberField;
     private TextView labelField;
     private TextView formatField;
@@ -51,6 +55,8 @@ public class FieldFragment extends Fragment {
     private View responseScale;
     private TextView responseScaleLabel;
     private SeekBar responseScaleSlider;
+    private RadioGroup radioButtonField;
+    private DatePicker datePickerField;
     private Field field;
     private char decimalCharacter;
 
@@ -76,11 +82,27 @@ public class FieldFragment extends Fragment {
 
         oidField = (TextView)v.findViewById(R.id.field_oid_field);
         typeField = (TextView)v.findViewById(R.id.field_type_field);
-        headerField = (TextView)v.findViewById(R.id.field_header_field);
         numberField = (TextView)v.findViewById(R.id.field_number_field);
         labelField = (TextView)v.findViewById(R.id.field_label_field);
         formatField = (TextView)v.findViewById(R.id.field_format_field);
         problemField = (TextView)v.findViewById(R.id.field_problem_field);
+
+        // The DatePicker listener is attached to the datePickerField below,
+        // when setting the default value using `init()`
+        datePickerField = (DatePicker)v.findViewById(R.id.field_date_picker);
+        DatePicker.OnDateChangedListener dateSetListener = new DatePicker.OnDateChangedListener() {
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                updateFieldResponse();
+            }
+        };
+
+        radioButtonField = (RadioGroup)v.findViewById(R.id.field_response_radio);
+        radioButtonField.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                updateFieldResponse();
+            }
+        });
 
         responseField = (EditText)v.findViewById(R.id.field_response_field);
         responseField.addTextChangedListener(new TextWatcher() {
@@ -117,26 +139,47 @@ public class FieldFragment extends Fragment {
         // Populate the views with the field information
         oidField.setText(field.getFieldOID());
         typeField.setText(field.getFieldType().toString());
-        headerField.setText(field.getHeader());
         numberField.setText(field.getFieldNumber());
         labelField.setText(field.getLabel());
         formatField.setText(getFormatForField(field));
         problemField.setText(field.getResponseProblem().toString());
 
-        // For scale field types we hide the EditText and show a SeekBar instead
+        // Hide all fields and show them selectively
+        responseField.setVisibility(View.GONE);
+        responseScale.setVisibility(View.GONE);
+        radioButtonField.setVisibility(View.GONE);
+        datePickerField.setVisibility(View.GONE);
         switch (field.getFieldType()) {
+            case DICTIONARY:
+                DictionaryField df = (DictionaryField) field;
+                DictionaryResponse r = df.getSubjectResponse();
+                int selectedId = R.id.field_response_radio_yes;
+                if (r != null && r.getUserValue() == "No")
+                    selectedId = R.id.field_response_radio_no;
+                radioButtonField.check(selectedId);
+                radioButtonField.setVisibility(View.VISIBLE);
+                break;
+            case DATE_TIME:
+                DateTimeField dtf = (DateTimeField) field;
+                datePickerField.setVisibility(View.VISIBLE);
+
+                Date response = dtf.getSubjectResponse();
+                Calendar date = Calendar.getInstance();
+                if (response != null)
+                    date.setTime(response);
+
+                datePickerField.init(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), dateSetListener);
+                break;
             case NRS:
             case VAS:
             case VAS_BOX:
                 ScaleField sf = (ScaleField)field;
                 responseScaleLabel.setText(" ");
                 responseScaleSlider.setMax(sf.getMaximumResponse() - sf.getMinimumResponse());
-                responseField.setVisibility(View.GONE);
                 responseScale.setVisibility(View.VISIBLE);
                 break;
             default:
                 responseField.setVisibility(View.VISIBLE);
-                responseScale.setVisibility(View.GONE);
                 break;
         }
 
@@ -265,9 +308,9 @@ public class FieldFragment extends Fragment {
             }
             case DATE_TIME: {
                 DateTimeField dtf = (DateTimeField)field;
-                RaveDateFormat dateFormat = new RaveDateFormat(dtf.getDateTimeFormat());
+
                 try {
-                    Date response = dateFormat.parse(text);
+                    Date response = new Date(datePickerField.getYear() - 1900, datePickerField.getMonth(), datePickerField.getDayOfMonth());
                     dtf.setSubjectResponse(response);
                 }
                 catch (IllegalArgumentException ex) {
@@ -278,15 +321,10 @@ public class FieldFragment extends Fragment {
             }
             case DICTIONARY: {
                 DictionaryField df = (DictionaryField)field;
-                try {
-                    int index = Integer.parseInt(text) - 1;
-                    DictionaryResponse response = df.getPossibleResponses().get(index);
-                    df.setSubjectResponse(response);
-                }
-                catch (IndexOutOfBoundsException|NumberFormatException ex) {
-                    df.setSubjectResponse(null);
-                    Log.e(TAG, ex.getMessage());
-                }
+                int selectedId = radioButtonField.getCheckedRadioButtonId();
+                int index = (selectedId == R.id.field_response_radio_yes ? 0 : 1);
+                DictionaryResponse response = df.getPossibleResponses().get(index);
+                df.setSubjectResponse(response);
                 break;
             }
             case BRISTOL:

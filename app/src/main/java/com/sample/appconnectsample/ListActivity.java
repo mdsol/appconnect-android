@@ -87,7 +87,8 @@ public class ListActivity extends AppCompatActivity {
         // Start an activity to fill out the form. If the form is from the SDK
         // sample CRF, we open FORM1 as a one-page form and FORM2 as a multi-page
         // form to demonstrate how to handle both cases.
-        if (form.getParentSubject().getStudy().getName().equals("Sample_SDK")) {
+        String studyName = form.getParentSubject().getStudy().getName();
+        if (studyName.equals("Patient Cloud Test 1 (Dev)")) {
             String formOID = form.getFormOID();
             if (formOID.equals("FORM1")) {
                 intent = new Intent(ListActivity.this, OnePageFormActivity.class);

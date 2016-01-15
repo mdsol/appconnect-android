@@ -57,24 +57,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/field_header_label"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/field_header_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:text="@string/field_number_label"
                     android:textStyle="bold" />
 
@@ -152,6 +134,25 @@
             android:background="@drawable/edit_text_background"
             android:inputType="textNoSuggestions" />
 
+        <RadioGroup
+            android:id="@+id/field_response_radio"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/field_table">
+
+            <RadioButton android:id="@+id/field_response_radio_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"/>
+
+            <RadioButton android:id="@+id/field_response_radio_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"/>
+
+        </RadioGroup>
+
         <RelativeLayout
             android:id="@+id/field_response_scale"
             android:layout_width="match_parent"
@@ -174,6 +175,17 @@
                 android:layout_marginRight="8dp" />
 
         </RelativeLayout>
+
+        <DatePicker
+            android:id="@+id/field_date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/field_table"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            android:endYear="2100"
+            android:startYear="1900" >
+        </DatePicker>
 
     </RelativeLayout>
 
