@@ -139,10 +139,10 @@ public class FieldFragment extends Fragment {
             case DICTIONARY:
                 DictionaryField df = (DictionaryField) field;
                 DictionaryResponse r = df.getSubjectResponse();
-                int selected_id = R.id.field_response_radio_yes;
+                int selectedId = R.id.field_response_radio_yes;
                 if (r != null && r.getUserValue() == "No")
-                    selected_id = R.id.field_response_radio_no;
-                radioButtonField.check(selected_id);
+                    selectedId = R.id.field_response_radio_no;
+                radioButtonField.check(selectedId);
                 radioButtonField.setVisibility(View.VISIBLE);
                 break;
             case NRS:
@@ -296,8 +296,8 @@ public class FieldFragment extends Fragment {
             }
             case DICTIONARY: {
                 DictionaryField df = (DictionaryField)field;
-                int selected_id = radioButtonField.getCheckedRadioButtonId();
-                int index = (selected_id == R.id.field_response_radio_yes ? 0 : 1);
+                int selectedId = radioButtonField.getCheckedRadioButtonId();
+                int index = (selectedId == R.id.field_response_radio_yes ? 0 : 1);
                 DictionaryResponse response = df.getPossibleResponses().get(index);
                 df.setSubjectResponse(response);
                 break;
