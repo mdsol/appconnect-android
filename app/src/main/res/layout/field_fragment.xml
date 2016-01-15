@@ -176,6 +176,17 @@
 
         </RelativeLayout>
 
+        <DatePicker
+            android:id="@+id/field_date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/field_table"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            android:endYear="2100"
+            android:startYear="1900" >
+        </DatePicker>
+
     </RelativeLayout>
 
 </ScrollView>

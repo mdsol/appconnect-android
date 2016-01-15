@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -25,7 +26,10 @@ import com.mdsol.babbage.model.NumericField;
 import com.mdsol.babbage.model.RaveDateFormat;
 import com.mdsol.babbage.model.ScaleField;
 import com.mdsol.babbage.model.TextField;
+
+import java.text.DateFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +56,7 @@ public class FieldFragment extends Fragment {
     private TextView responseScaleLabel;
     private SeekBar responseScaleSlider;
     private RadioGroup radioButtonField;
+    private DatePicker datePickerField;
     private Field field;
     private char decimalCharacter;
 
@@ -81,8 +86,17 @@ public class FieldFragment extends Fragment {
         labelField = (TextView)v.findViewById(R.id.field_label_field);
         formatField = (TextView)v.findViewById(R.id.field_format_field);
         problemField = (TextView)v.findViewById(R.id.field_problem_field);
-        radioButtonField = (RadioGroup)v.findViewById(R.id.field_response_radio);
 
+        // The DatePicker listener is attached to the datePickerField below,
+        // when setting the default value using `init()`
+        datePickerField = (DatePicker)v.findViewById(R.id.field_date_picker);
+        DatePicker.OnDateChangedListener dateSetListener = new DatePicker.OnDateChangedListener() {
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                updateFieldResponse();
+            }
+        };
+
+        radioButtonField = (RadioGroup)v.findViewById(R.id.field_response_radio);
         radioButtonField.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -134,7 +148,7 @@ public class FieldFragment extends Fragment {
         responseField.setVisibility(View.GONE);
         responseScale.setVisibility(View.GONE);
         radioButtonField.setVisibility(View.GONE);
-
+        datePickerField.setVisibility(View.GONE);
         switch (field.getFieldType()) {
             case DICTIONARY:
                 DictionaryField df = (DictionaryField) field;
@@ -144,6 +158,17 @@ public class FieldFragment extends Fragment {
                     selectedId = R.id.field_response_radio_no;
                 radioButtonField.check(selectedId);
                 radioButtonField.setVisibility(View.VISIBLE);
+                break;
+            case DATE_TIME:
+                DateTimeField dtf = (DateTimeField) field;
+                datePickerField.setVisibility(View.VISIBLE);
+
+                Date response = dtf.getSubjectResponse();
+                Calendar date = Calendar.getInstance();
+                if (response != null)
+                    date.setTime(response);
+
+                datePickerField.init(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), dateSetListener);
                 break;
             case NRS:
             case VAS:
@@ -283,9 +308,9 @@ public class FieldFragment extends Fragment {
             }
             case DATE_TIME: {
                 DateTimeField dtf = (DateTimeField)field;
-                RaveDateFormat dateFormat = new RaveDateFormat(dtf.getDateTimeFormat());
+
                 try {
-                    Date response = dateFormat.parse(text);
+                    Date response = new Date(datePickerField.getYear() - 1900, datePickerField.getMonth(), datePickerField.getDayOfMonth());
                     dtf.setSubjectResponse(response);
                 }
                 catch (IllegalArgumentException ex) {
