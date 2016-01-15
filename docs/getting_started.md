@@ -20,7 +20,7 @@ Babbage.start(this, filesDir, key, new MyCustomBabbageListener());
 
 
 ## Loading Data from the Datastore
-Babbage stores data in a SQLite database. You can retrieve this data by using a Datastore.
+You can store and retrieve persistent data using the Datastore class.
 
 ```java
 Datastore datastore = DatastoreFactory.create()
