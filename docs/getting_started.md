@@ -34,6 +34,7 @@ User user = datastore.getUser(username);
 
 ## Network Requests
 Babbage works by talking to backend services to retrieve all information (Users, Subjects, Forms, etc..). A normal application flow goes something like this:
+
 1. Log in using a username / password 
 2. Load subjects for the logged in user
 3. Load forms and present them to the user
