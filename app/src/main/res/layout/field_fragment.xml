@@ -152,6 +152,7 @@
                 android:text="No"/>
 
         </RadioGroup>
+
         <RelativeLayout
             android:id="@+id/field_response_scale"
             android:layout_width="match_parent"
