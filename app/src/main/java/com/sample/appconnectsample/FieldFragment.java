@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import com.mdsol.babbage.model.Datastore;
@@ -50,6 +51,7 @@ public class FieldFragment extends Fragment {
     private View responseScale;
     private TextView responseScaleLabel;
     private SeekBar responseScaleSlider;
+    private RadioGroup radioButtonField;
     private Field field;
     private char decimalCharacter;
 
@@ -79,6 +81,14 @@ public class FieldFragment extends Fragment {
         labelField = (TextView)v.findViewById(R.id.field_label_field);
         formatField = (TextView)v.findViewById(R.id.field_format_field);
         problemField = (TextView)v.findViewById(R.id.field_problem_field);
+        radioButtonField = (RadioGroup)v.findViewById(R.id.field_response_radio);
+
+        radioButtonField.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                updateFieldResponse();
+            }
+        });
 
         responseField = (EditText)v.findViewById(R.id.field_response_field);
         responseField.addTextChangedListener(new TextWatcher() {
@@ -120,20 +130,31 @@ public class FieldFragment extends Fragment {
         formatField.setText(getFormatForField(field));
         problemField.setText(field.getResponseProblem().toString());
 
-        // For scale field types we hide the EditText and show a SeekBar instead
+        // Hide all fields and show them selectively
+        responseField.setVisibility(View.GONE);
+        responseScale.setVisibility(View.GONE);
+        radioButtonField.setVisibility(View.GONE);
+
         switch (field.getFieldType()) {
+            case DICTIONARY:
+                DictionaryField df = (DictionaryField) field;
+                DictionaryResponse r = df.getSubjectResponse();
+                int selectedId = R.id.field_response_radio_yes;
+                if (r != null && r.getUserValue() == "No")
+                    selectedId = R.id.field_response_radio_no;
+                radioButtonField.check(selectedId);
+                radioButtonField.setVisibility(View.VISIBLE);
+                break;
             case NRS:
             case VAS:
             case VAS_BOX:
                 ScaleField sf = (ScaleField)field;
                 responseScaleLabel.setText(" ");
                 responseScaleSlider.setMax(sf.getMaximumResponse() - sf.getMinimumResponse());
-                responseField.setVisibility(View.GONE);
                 responseScale.setVisibility(View.VISIBLE);
                 break;
             default:
                 responseField.setVisibility(View.VISIBLE);
-                responseScale.setVisibility(View.GONE);
                 break;
         }
 
@@ -275,15 +296,10 @@ public class FieldFragment extends Fragment {
             }
             case DICTIONARY: {
                 DictionaryField df = (DictionaryField)field;
-                try {
-                    int index = Integer.parseInt(text) - 1;
-                    DictionaryResponse response = df.getPossibleResponses().get(index);
-                    df.setSubjectResponse(response);
-                }
-                catch (IndexOutOfBoundsException|NumberFormatException ex) {
-                    df.setSubjectResponse(null);
-                    Log.e(TAG, ex.getMessage());
-                }
+                int selectedId = radioButtonField.getCheckedRadioButtonId();
+                int index = (selectedId == R.id.field_response_radio_yes ? 0 : 1);
+                DictionaryResponse response = df.getPossibleResponses().get(index);
+                df.setSubjectResponse(response);
                 break;
             }
             case BRISTOL:
