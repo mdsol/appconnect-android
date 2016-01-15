@@ -39,3 +39,5 @@ This SDK also comes with a sample CRF that can be used to exercise the one-page 
 ## Documentation ##
 
 Please refer to the documentation for detailed instruction on how to use the various APIs.
+
+There is a [Getting Started](./docs/getting_started.md) document detailing the basics of the AppConnect API.
