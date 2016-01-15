@@ -5,7 +5,7 @@ Babbage must be initialized with four arguments:
 - The `Application` instance
 - The directory in which to store the data
 - The encryption key
-- An instance of [Babbage.Listener](https://github.com/mdsol/babbage/blob/develop/api/android/src/main/java/com/mdsol/babbage/Babbage.java#L28) to handle migration events
+- An instance of `Babbage.Listener` to handle migration events
 
 ```java
 // In App.Java
