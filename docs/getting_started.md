@@ -28,6 +28,7 @@ User user = datastore.getUser(username);
 ```
 
 ### Important Considerations
+- Although there can be multiple Datastore instances, they are all communicating with the same persistent store (a local SQlite database).
 - Datstore instances are not thread safe. If you are creating a new thread (perhaps to make a network request asynchronously) then you should create a new Datastore to accompany it.
 - Instances loaded from a Datstore are not thread safe. Instead of passing an instance to a separate thread, pass the instance's ID (e.g. Java: `user.getID()`, Swift: `user.objectID`) and use a separate Datastore to load the instance.
 
