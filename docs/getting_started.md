@@ -1,7 +1,7 @@
 This is a guide to the basics of Babbage - intialization, making network requests, and loading data from the datastore.
 
 ## Installation
-To install, include Babbage in the `build.gradle` file, using the credentials provided to you. When you next sync your gradle project, the library will be downloaded and installed.
+To install Babbage, include it in the `build.gradle` file, using the credentials provided to you. When you next sync your gradle project, the library will be downloaded and installed.
 
 ```groovy
 repositories {
@@ -58,6 +58,7 @@ Babbage works by talking to backend services to retrieve all information (Users,
 2. Load subjects for the logged in user
 3. Load forms and present them to the user
 
+The following code replicates this process:
 ```java
 User user = client.logIn(datastore, username, password);
 List<Subject> subject = client.loadSubjects(datastore, user).get(0)
