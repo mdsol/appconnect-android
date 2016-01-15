@@ -52,7 +52,7 @@ User user = datastore.getUser(username);
 
 
 ## Network Requests
-Babbage works by talking to backend services to retrieve all information (Users, Subjects, Forms, etc..). A normal application flow goes something like this:
+Babbage talks to back-end services to retrieve all information, such as users, subjects, forms, and so on. A normal application flow goes something like this:
 
 1. Log in using a username / password 
 2. Load subjects for the logged in user
@@ -66,8 +66,8 @@ List<Form> forms = loadForms(datastore, subject)
 ```
 
 ### Important Considerations
-- This example assumes the user is associated with a single subject - in reality they may have multiple subjects associated with them.
+- The preceding example assumes the user is associated with a single subject. In reality they may have multiple subjects associated with them.
 - The example assumes a best-case scenario where each request is successful. A robust application should have adequate error handling throughout the process.
-- In an actual app, all requests should be made asynchronously on a background thread to avoid interfering with the UI.
+- To avoid interfering with the UI, make all requests asynchronously on a background thread.
 - The Java network requests are not synchronous and should be performed in a background thread.
 
