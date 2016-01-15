@@ -204,7 +204,7 @@ public class OnePageFormActivity extends AppCompatActivity {
 
                 // Tell the client to send the form responses
                 Client client = App.getClient(OnePageFormActivity.this);
-                client.sendResponses(datastore, form);
+                client.sendResponses(form);
             }
             catch (RequestException ex) {
                 exception = ex;
