@@ -87,6 +87,8 @@ public class FieldFragment extends Fragment {
         formatField = (TextView)v.findViewById(R.id.field_format_field);
         problemField = (TextView)v.findViewById(R.id.field_problem_field);
 
+        // The DatePicker listener is attached to the datePickerField below,
+        // when setting the default value using `init()`
         datePickerField = (DatePicker)v.findViewById(R.id.field_date_picker);
         DatePicker.OnDateChangedListener dateSetListener = new DatePicker.OnDateChangedListener() {
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
