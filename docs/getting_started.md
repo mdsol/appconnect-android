@@ -1,5 +1,23 @@
 This is a guide to the basics of Babbage - intialization, making network requests, and loading data from the datastore.
 
+## Installation
+To install, include Babbage in the `build.gradle` file, using the credentials provided to you. When you next sync your gradle project, the library will be downloaded and installed.
+
+```groovy
+repositories {
+    maven {
+        credentials {
+            username "myusername"
+            password "mypassword"
+        }
+
+        url 'https://etlhydra-artifactory-sandbox.imedidata.net/artifactory/p-cloud-release'
+    }
+}
+```
+
+An example of how to load these credentials from the `local.properties` file can be found in the sample app's `build.gradle` file.
+
 ## Initialization
 Babbage must be initialized with four arguments:
 - The `Application` instance
