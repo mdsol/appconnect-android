@@ -85,10 +85,10 @@ Datastore datastore = DatastoreFactory.create()
 User user = datastore.getUser(username);
 ```
 
-### Important Considerations
-- Although there can be multiple Datastore instances, they are all communicating with the same persistent store (a local SQlite database).
-- Datastore instances are not thread-safe. If you are creating a new thread - perhaps to make a network request asynchronously - then you should create a new Datastore to accompany it.
-- Instances loaded from a Datastore are not thread-safe. Instead of passing an instance to a separate thread, pass the instance's ID - for example, Java: `user.getID()`, Swift: `user.objectID` - and use a separate Datastore to load the instance.
+>**Important Considerations:** 
+  - Although there can be multiple Datastore instances, they are all communicating with the same persistent store (a local SQlite database).
+  - Datastore instances are not thread-safe. If you are creating a new thread - perhaps to make a network request asynchronously - then you should create a new Datastore to accompany it.
+  - Instances loaded from a Datastore are not thread-safe. Instead of passing an instance to a separate thread, pass the instance's ID - for example, Java: `user.getID()`, Swift: `user.objectID` - and use a separate Datastore to load the instance.
 
 
 ## Network Requests
@@ -105,11 +105,11 @@ List<Subject> subject = client.loadSubjects(datastore, user).get(0)
 List<Form> forms = loadForms(datastore, subject)
 ```
 
-### Important Considerations
-- The preceding example assumes the user is associated with a single subject. In reality they may have multiple subjects associated with them.
-- The example assumes a best-case scenario where each request is successful. A robust application should have adequate error handling throughout the process.
-- To avoid interfering with the UI, make all requests asynchronously on a background thread.
-- The Java network requests are not synchronous and should be performed in a background thread.
+>**Important Considerations:**
+  - The preceding example assumes the user is associated with a single subject. In reality they may have multiple subjects associated with them.
+  - The example assumes a best-case scenario where each request is successful. A robust application should have adequate error handling throughout the process.
+  - To avoid interfering with the UI, make all requests asynchronously on a background thread.
+  - The Java network requests are not synchronous and should be performed in a background thread.
 
 ## API Documentation ##
 
