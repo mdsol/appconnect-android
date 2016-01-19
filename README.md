@@ -36,7 +36,7 @@ This SDK also comes with a sample CRF that can be used to exercise the one-page 
 2. Log in with the sample app using the credentials of the subject you chose.
 3. You should see two forms, Form 1 and Form 2. The former is hardcoded to open as a one-page form. The latter will open as a multi-page form.
 
-# Getting Started with the AppConnect API #
+# Using the API in your own application #
 
 This is a guide to the basics of Babbage - intialization, making network requests, and loading data from the datastore.
 
