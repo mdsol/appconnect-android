@@ -62,7 +62,7 @@ An example of how to load these credentials from the `local.properties` file can
 Babbage must be initialized with four arguments:
 - The `Application` instance
 - The directory in which to store the data
-- The encryption key
+- The encryption key, which must be the same for all launches of your app
 - An instance of `Babbage.Listener` to handle migration events
 
 ```java
