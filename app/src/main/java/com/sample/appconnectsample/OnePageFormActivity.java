@@ -162,7 +162,7 @@ public class OnePageFormActivity extends AppCompatActivity {
                 TextField field1 = (TextField)sequencer.getCurrentField();
                 field1.setSubjectResponse(response1);
                 if (field1.getResponseProblem() != Field.Problem.NONE) {
-                    message = getString(R.string.one_page_form_error_invalid_response_message, "1");
+                    message = getString(R.string.one_page_form_error_invalid_response_message, "Text Field 1");
                     return null;
                 }
 
@@ -172,7 +172,7 @@ public class OnePageFormActivity extends AppCompatActivity {
                 NumericField field2 = (NumericField)sequencer.getCurrentField();
                 field2.setSubjectResponse(field2.stringToResponse(response2, decimalCharacter));
                 if (field2.getResponseProblem() != Field.Problem.NONE) {
-                    message = getString(R.string.one_page_form_error_invalid_response_message, "2");
+                    message = getString(R.string.one_page_form_error_invalid_response_message, "Numbers");
                     return null;
                 }
 
@@ -182,7 +182,7 @@ public class OnePageFormActivity extends AppCompatActivity {
                 NumericField field3 = (NumericField)sequencer.getCurrentField();
                 field3.setSubjectResponse(field3.stringToResponse(response3, decimalCharacter));
                 if (field3.getResponseProblem() != Field.Problem.NONE) {
-                    message = getString(R.string.one_page_form_error_invalid_response_message, "3");
+                    message = getString(R.string.one_page_form_error_invalid_response_message, "Numeric Value");
                     return null;
                 }
 
