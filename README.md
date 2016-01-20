@@ -19,7 +19,7 @@ In particular, this project shows how to:
 To get this app up and running:
 
 1. Launch Android Studio and use the "Import project" option.
-2. Add the following lines to your local.properties file, using the credentials provided to you:
+2. Add the following lines to your local.properties file, using the provided Artifactory credentials:
 ```
 artifactory.username=yourusername
 artifactory.password=yourpassword
