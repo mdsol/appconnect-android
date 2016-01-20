@@ -36,7 +36,7 @@
     <string name="one_page_form_submitting_message">Sending Form…</string>
     <string name="one_page_form_error_title">Form Error</string>
     <string name="one_page_form_error_unexpected_field_type_message">A field in the form is of an unexpected type.</string>
-    <string name="one_page_form_error_invalid_response_message">The response for field %1$s is invalid. Please review and try again.</string>
+    <string name="one_page_form_error_invalid_response_message">The \"%1$s\" field is not the correct format.</string>
     <string name="one_page_form_error_more_fields_message">There are more fields that need to be filled out in this form.</string>
     <string name="one_page_form_error_finish_failed_message">This form requires a signature, which is not supported by this sample app.</string>
 
