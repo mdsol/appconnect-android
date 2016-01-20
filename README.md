@@ -101,8 +101,8 @@ Babbage talks to back-end services to retrieve all information, such as users, s
 The following code replicates this process:
 ```java
 User user = client.logIn(datastore, username, password);
-List<Subject> subject = client.loadSubjects(datastore, user).get(0)
-List<Form> forms = loadForms(datastore, subject)
+List<Subject> subject = client.loadSubjects(user).get(0)
+List<Form> forms = loadForms(subject)
 ```
 
 >**Important Considerations:**
