@@ -194,7 +194,7 @@ public class MultiPageFormActivity extends AppCompatActivity {
                 // form so all we need to do here is tell the client to send the
                 // form responses
                 Client client = App.getClient(MultiPageFormActivity.this);
-                client.sendResponses(datastore, form);
+                client.sendResponses(form);
             }
             catch (RequestException ex) {
                 exception = ex;
