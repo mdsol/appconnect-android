@@ -14,13 +14,21 @@ In particular, this project shows how to:
   * All fields on one page, where you use the StepSequencer only at the end.
   * One field per page, where you use the StepSequencer to navigate from field to field.
 
+## Prerequisites
+
+If you are running this application, it is assumed that:
+
+- You were provided Artifactory credentials by a Medidata representative.
+- You have a valid Rave installation with Patient Cloud functionality enabled.
+
 ## Building ##
 
 To get this app up and running:
 
 1. Launch Android Studio and use the "Import project" option.
 2. Add the following lines to your local.properties file, using the provided Artifactory credentials:
-```
+
+```gradle
 artifactory.username=yourusername
 artifactory.password=yourpassword
 ```
