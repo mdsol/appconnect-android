@@ -13,6 +13,8 @@ In particular, this project shows how to:
 5. Fill out and submit a form, either with:
   * All fields on one page, where you use the StepSequencer only at the end.
   * One field per page, where you use the StepSequencer to navigate from field to field.
+  
+See [Medidata AppConnect Home](https://learn.mdsol.com/display/APPCONNECTprd/Medidata+AppConnect+Home) for more information. 
 
 ## Prerequisites
 
