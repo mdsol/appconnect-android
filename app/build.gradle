@@ -36,7 +36,7 @@ repositories {
             password artifactory_pass
         }
 
-        url 'https://etlhydra-artifactory-sandbox.imedidata.net/artifactory/p-cloud-release'
+        url 'http://etlhydra-artifactory-sandbox.imedidata.net/artifactory/p-cloud-release'
     }
 }
 
@@ -46,5 +46,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
 
     // *** AppConnect ***
-    compile 'com.mdsol:babbage:1.1@aar'
+    compile 'com.mdsol:babbage:2016.2.0.23@aar'
 }
