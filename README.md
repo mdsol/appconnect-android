@@ -66,7 +66,7 @@ repositories {
 }
 ```
 
-An example of how to load these credentials from the `local.properties` file can be found in the sample app's [build.gradle](build.gradle) file.
+An example of how to load these credentials from the `local.properties` file can be found in the sample app's [build.gradle](.../develop/app/build.gradle) file.
 
 ## Initialization
 Babbage must be initialized with four arguments:
