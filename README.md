@@ -14,7 +14,7 @@ In particular, this project shows how to:
   * All fields on one page, where you use the StepSequencer only at the end.
   * One field per page, where you use the StepSequencer to navigate from field to field.
   
-See [Medidata AppConnect Home](https://learn.mdsol.com/display/APPCONNECTprd/Medidata+AppConnect+Home) for more information. 
+>See [Medidata AppConnect Home](https://learn.mdsol.com/display/APPCONNECTprd/Medidata+AppConnect+Home) for more information. 
 
 ## Prerequisites
 
@@ -22,6 +22,8 @@ If you are running this application, it is assumed that:
 
 - You were provided Artifactory credentials by a Medidata representative.
 - You have a valid Rave installation with Patient Cloud functionality enabled.
+
+>You also need permission to access Rave studies and sites. If you do not have these permissions, contact your Medidata representative for more information.
 
 ## Building ##
 
