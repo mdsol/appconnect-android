@@ -68,7 +68,7 @@ repositories {
 }
 ```
 
-An example of how to load these credentials from the `local.properties` file can be found in the sample app's [build.gradle](/app/build.gradle) file.
+An example of how to load these credentials from the `local.properties` file can be found in the sample app's [build.gradle](https://github.com/mdsol/appconnect-android/blob/develop/app/build.gradle) file.
 
 ## Initialization
 Babbage must be initialized with four arguments:
@@ -117,7 +117,8 @@ List<Subject> subject = client.loadSubjects(user).get(0)
 List<Form> forms = loadForms(subject)
 ```
 
->**Important Considerations:**
+>**Important Considerations**
+
   - The preceding example assumes the user is associated with a single subject. In reality they may have multiple subjects associated with them.
   - The example assumes a best-case scenario where each request is successful. A robust application should have adequate error handling throughout the process.
   - To avoid interfering with the UI, make all requests asynchronously on a background thread.
