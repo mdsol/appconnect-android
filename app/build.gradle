@@ -46,5 +46,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
 
     // *** AppConnect ***
-    compile 'com.mdsol:babbage:2016.2.0.23@aar'
+    compile 'com.mdsol:babbage:2016.3.0.35@aar'
 }

@@ -2,6 +2,7 @@ package com.sample.appconnectsample;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class ListActivity extends AppCompatActivity {
     private FormAdapter formAdapter;
     private View progressBar;
     private long userID;
+    private long subjectID;
     private List<Form> forms = new ArrayList<>();
 
     @Override
@@ -74,14 +76,26 @@ public class ListActivity extends AppCompatActivity {
         // studies. Here we just gather all available forms, but you could also
         // present them organized by subject if desired.
         Datastore datastore = App.getUIDatastore(this);
-        for (Subject subject : datastore.getSubjectsForUser(userID))
+        for (Subject subject : datastore.getSubjectsForUser(userID)) {
+            if (subjectID == 0)
+                subjectID = subject.getID();
+
             forms.addAll(datastore.getAvailableFormsForSubject(subject.getID()));
+        }
 
         formAdapter.notifyDataSetChanged();
     }
 
     private void doOpenForm(Form form) {
         Intent intent;
+
+        if (form == null) {
+            // passing in a null form implies image capture.
+            intent = new Intent(ListActivity.this, ImageCaptureActivity.class);
+            intent.putExtra(ImageCaptureActivity.SUBJECT_ID_EXTRA, subjectID);
+            startActivity(intent);
+            return;
+        }
 
         // *** AppConnect ***
         // Start an activity to fill out the form. If the form is from the SDK
@@ -178,15 +192,40 @@ public class ListActivity extends AppCompatActivity {
         }
 
         @Override
+        public Form getItem(int position) {
+            if (forms.size() == 0) {
+                return null;
+            }
+
+            return forms.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            // a subject with 0 forms will display a text row for data upload demo.
+            if (forms.size() == 0)
+                return 1;
+
+            return forms.size();
+        }
+
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View v = convertView;
+
             if (v == null)
                 v = getLayoutInflater().inflate(R.layout.form_row, parent, false);
 
-            Form form = getItem(position);
+            // a subject with 0 forms is intended for subject data upload demonstration
+            String formDisplayName = "Capture Image";
+            if (forms.size() > 0) {
+                Form form = getItem(position);
+                formDisplayName = form.getName();
+            }
 
             TextView tv = (TextView)v.findViewById(R.id.form_row_name_label);
-            tv.setText(form.getName());
+            tv.setText(formDisplayName);
 
             return v;
         }

@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -24,6 +27,8 @@
         <activity android:name=".OnePageFormActivity" />
 
         <activity android:name=".MultiPageFormActivity" />
+
+        <activity android:name=".ImageCaptureActivity"/>
 
     </application>
 
