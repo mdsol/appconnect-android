@@ -21,6 +21,7 @@ import com.mdsol.babbage.model.Datastore;
 import com.mdsol.babbage.model.DatastoreFactory;
 import com.mdsol.babbage.model.Subject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -135,12 +136,16 @@ public class ImageCaptureActivity extends AppCompatActivity {
                 datastore = DatastoreFactory.create();
                 Subject subject = datastore.getSubject(subjectID);
 
-                // debug test, in future convert the whole image not just the ninepatch
-                subject.collectData(currentImage.getNinePatchChunk(), "sample metadata", "image/jpeg");
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                currentImage.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                byte[] byteArray = stream.toByteArray();
+
+                // the api call to babbage to actually save the data:
+                subject.collectData(byteArray, "sample metadata", "image/jpeg");
             }
             catch (Exception ex) {
                 exception = ex;
-                message = "";
+                message = ex.getMessage();
             }
             finally {
                 if (datastore != null)
