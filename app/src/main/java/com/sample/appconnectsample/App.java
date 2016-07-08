@@ -32,7 +32,7 @@ public class App extends Application {
         byte[] key = new byte[] {
             1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2};
 
-        Babbage.start(this, Client.Environment.SANDBOX, dir, dir, key, null );
+        Babbage.start(this, Client.Environment.SANDBOX, "44a7bee80f3dcabb74214c618da430c6", dir, dir, key, null );
 
         // *** AppConnect ***
         // The client that will be used to make requests to the backend can be
