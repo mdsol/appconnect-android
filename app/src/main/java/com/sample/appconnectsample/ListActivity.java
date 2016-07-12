@@ -155,8 +155,10 @@ public class ListActivity extends AppCompatActivity {
                 // these methods are only usable during the lifetime of this
                 // temporary datastore.
                 Client client = App.getClient(ListActivity.this);
-                for (Subject subject : client.loadSubjects(user))
-                    client.loadForms(subject);
+                for (Subject subject : client.loadSubjects(user)) {
+                    if (subject.getStudy().isRaveEnabled())
+                        client.loadForms(subject);
+                }
             }
             catch (RequestException ex) {
                 exception = ex;
