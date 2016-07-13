@@ -184,8 +184,6 @@ public class ImageCaptureActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             currentImageView.setImageBitmap(null);
                             currentImage = null;
-
-                            //finish();
                         }
                     }).
                     show();

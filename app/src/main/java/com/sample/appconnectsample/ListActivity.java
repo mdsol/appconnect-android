@@ -204,7 +204,7 @@ public class ListActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // a subject with 0 forms will display a text row for data upload demo.
+            // A subject with 0 forms will display a text row for data upload demo.
             if (forms.size() == 0)
                 return 1;
 
@@ -219,7 +219,7 @@ public class ListActivity extends AppCompatActivity {
             if (v == null)
                 v = getLayoutInflater().inflate(R.layout.form_row, parent, false);
 
-            // a subject with 0 forms is intended for subject data upload demonstration
+            // A subject with 0 forms is intended for subject data upload demonstration.
             String formDisplayName = "Capture Image";
             if (forms.size() > 0) {
                 Form form = getItem(position);
