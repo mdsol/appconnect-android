@@ -45,6 +45,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
 
+    compile 'com.amazonaws:aws-android-sdk-s3:2.2.13'
+
     // *** AppConnect ***
-    compile 'com.mdsol:babbage:2016.2.0.23@aar'
+    compile 'com.mdsol:babbage:2016.3.0.37@aar'
 }

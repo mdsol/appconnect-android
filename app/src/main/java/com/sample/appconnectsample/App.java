@@ -31,7 +31,8 @@ public class App extends Application {
         File dir = getFilesDir();
         byte[] key = new byte[] {
             1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2};
-        Babbage.start(this, dir, key, null);
+
+        Babbage.start(this, Client.Environment.SANDBOX, "9a0bf55f96d7049f88ad5b6f9006fc6a", dir, dir, key, null);
 
         // *** AppConnect ***
         // The client that will be used to make requests to the backend can be
