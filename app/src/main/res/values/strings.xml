@@ -31,6 +31,7 @@
     <string name="login_username_field_hint">Username</string>
     <string name="login_password_field_hint">Password</string>
     <string name="login_log_in_button">Log In</string>
+    <string name="login_register_button">Sign Up</string>
 
     <string name="one_page_form_submit_button">Submit</string>
     <string name="one_page_form_submitting_message">Sending Form…</string>
@@ -52,4 +53,10 @@
 
     <string name="sync_failed_title">Load Failed</string>
     <string name="sync_failed_message">An error occurred while loading the subjects and forms.</string>
+
+    <string name="registration_email_field_hint">Email</string>
+    <string name="registration_email_confirmation_field_hint">Email confirmation</string>
+    <string name="registration_register_button">Submit</string>
+    <string name="registration_failed_title">Registration Failed</string>
+    <string name="registration_failed_message">Enter a valid email</string>
 </resources>

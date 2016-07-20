@@ -18,22 +18,22 @@ import com.mdsol.babbage.net.RequestException;
 /**
  * The activity where the user can log in with a username and password.
  */
-public class LoginActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "RegistrationActivity";
 
-    private EditText usernameField;
-    private EditText passwordField;
-    private Button logInButton;
+    private EditText emailField;
+    private EditText emailConfirmationField;
+    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        usernameField = (EditText)findViewById(R.id.login_username_field);
-        passwordField = (EditText)findViewById(R.id.login_password_field);
-        logInButton = (Button)findViewById(R.id.login_log_in_button);
+        emailField = (EditText)findViewById(R.id.registration_email_field);
+        emailConfirmationField = (EditText)findViewById(R.id.registration_email_confirmation_field);
+        registerButton = (Button)findViewById(R.id.registration_register_button);
 
         Client.setEnvironment(Client.Environment.PRODUCTION);
 
@@ -42,39 +42,37 @@ public class LoginActivity extends AppCompatActivity {
         if (BuildConfig.VALIDATION) {
             Client.setEnvironment(Client.Environment.VALIDATION);
         }
-
-        usernameField.setText(BuildConfig.DEFAULT_USERNAME);
-        passwordField.setText(BuildConfig.DEFAULT_PASSWORD);
     }
 
-    public void doLogInButton(View source) {
-        String username = usernameField.getText().toString();
-        String password = passwordField.getText().toString();
-        new LogInTask().execute(username, password);
-    }
+    public void onRegisterButton(View source) {
+        
+        String email = emailField.getText().toString();
+        String emailConfirmation = emailConfirmationField.getText().toString();
 
-    public void doRegisterButton(View source) {
-        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-        startActivity(intent);
+        if (!email.equals(emailConfirmation)) {
+            //show error.   
+            return;
+        }
+        
+        new RegisterTask().execute(email);
     }
 
     /**
-     * An asynchronous task that logs in the user.
+     * An asynchronous task that registers a new user with the email.
      */
-    private class LogInTask extends AsyncTask<String,Void,Void> {
+    private class RegisterTask extends AsyncTask<String,Void,Void> {
 
         private long userID;
         private RequestException exception;
 
         @Override
         protected void onPreExecute() {
-            logInButton.setEnabled(false);
+            registerButton.setEnabled(false);
         }
 
         @Override
         protected Void doInBackground(String... params) {
-            String username = params[0];
-            String password = params[1];
+            String email = params[0];
 
             // *** AppConnect ***
             // Each secondary thread must create its own datastore instance and
@@ -82,17 +80,20 @@ public class LoginActivity extends AppCompatActivity {
             Datastore datastore = null;
             try {
                 datastore = DatastoreFactory.create();
-                Client client = App.getClient(LoginActivity.this);
-                User user = client.logIn(datastore, username, password);
+                Client client = App.getClient(RegistrationActivity.this);
+                //User user = client.logIn(datastore, username, password);
 
                 // Babbage objects can't be shared between threads so you must pass
                 // them around by ID instead and the receiving code can get its own
                 // copy from its own datastore
-                userID = user.getID();
+                // userID = user.getID();
             }
+            /*
             catch (RequestException ex) {
                 exception = ex;
             }
+            */
+
             finally {
                 if (datastore != null)
                     datastore.dispose();
@@ -102,22 +103,21 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            logInButton.setEnabled(true);
+            registerButton.setEnabled(true);
 
             if (exception != null) {
-                Log.e(TAG, "The log in task failed", exception);
-                new AlertDialog.Builder(LoginActivity.this).
-                    setTitle(R.string.login_failed_title).
-                    setMessage(R.string.login_failed_message).
+                Log.e(TAG, "The registration task failed", exception);
+                new AlertDialog.Builder(RegistrationActivity.this).
+                    setTitle(R.string.registration_failed_title).
+                    setMessage(R.string.registration_failed_message).
                     setPositiveButton(R.string.ok_button, null).
                     show();
             }
             else {
-                // Start the ListActivity to show the forms available for the
-                // user who just logged in
-                Intent intent = new Intent(LoginActivity.this, ListActivity.class);
-                intent.putExtra(ListActivity.USER_ID_EXTRA, userID);
-                startActivity(intent);
+                //segue to login
+                // Intent intent = new Intent(LoginActivity.this, ListActivity.class);
+                // intent.putExtra(ListActivity.USER_ID_EXTRA, userID);
+                // startActivity(intent);
             }
         }
     }

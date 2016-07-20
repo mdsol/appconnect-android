@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".RegistrationActivity">
+
+    <EditText
+        android:id="@+id/registration_email_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/registration_email_field_hint"
+        android:inputType="text|textEmailAddress" />
+
+    <EditText
+        android:id="@+id/registration_email_confirmation_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/registration_email_confirmation_field_hint"
+        android:inputType="text|textEmailAddress" />
+
+    <Button
+        android:id="@+id/registration_register_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registration_email_confirmation_field"
+        android:layout_marginTop="8dp"
+        android:text="@string/registration_register_button"
+        android:onClick="onRegisterButton" />
+
+</RelativeLayout>
