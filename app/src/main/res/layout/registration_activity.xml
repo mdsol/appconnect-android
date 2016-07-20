@@ -19,6 +19,8 @@
         android:id="@+id/registration_email_confirmation_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/registration_email_field"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_background"
         android:hint="@string/registration_email_confirmation_field_hint"
         android:inputType="text|textEmailAddress" />

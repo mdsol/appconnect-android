@@ -29,19 +29,11 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.registration_activity);
 
         emailField = (EditText)findViewById(R.id.registration_email_field);
         emailConfirmationField = (EditText)findViewById(R.id.registration_email_confirmation_field);
         registerButton = (Button)findViewById(R.id.registration_register_button);
-
-        Client.setEnvironment(Client.Environment.PRODUCTION);
-
-        // It is possible to communicate with other environments in the Medidata
-        // Platform (although in most cases Production should be used).
-        if (BuildConfig.VALIDATION) {
-            Client.setEnvironment(Client.Environment.VALIDATION);
-        }
     }
 
     public void onRegisterButton(View source) {
