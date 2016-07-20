@@ -156,7 +156,7 @@ public class ListActivity extends AppCompatActivity {
                 // temporary datastore.
                 Client client = App.getClient(ListActivity.this);
                 for (Subject subject : client.loadSubjects(user)) {
-                    if (subject.getStudy().isRaveEnabled())
+                    if (subject.getStudy() != null && subject.getStudy().isRaveEnabled())
                         client.loadForms(subject);
                 }
             }
