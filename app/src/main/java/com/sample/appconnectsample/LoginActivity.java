@@ -54,8 +54,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void doRegisterButton(View source) {
-        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent(LoginActivity.this, RegistrationEmailActivity.class);
+        startActivityForResult(intent, RegistrationEmailActivity.REGISTRATION_REQUEST, null);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RegistrationEmailActivity.REGISTRATION_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                // The user registered successfully, set the email field
+                usernameField.setText(data.getStringExtra("email"));
+            }
+        }
     }
 
     /**

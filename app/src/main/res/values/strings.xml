@@ -54,9 +54,24 @@
     <string name="sync_failed_title">Load Failed</string>
     <string name="sync_failed_message">An error occurred while loading the subjects and forms.</string>
 
+    <string name="registration_submit_button">Submit</string>
+    <string name="registration_failed_title">Registration Failed</string>
+    
     <string name="registration_email_field_hint">Email</string>
     <string name="registration_email_confirmation_field_hint">Email confirmation</string>
-    <string name="registration_register_button">Submit</string>
-    <string name="registration_failed_title">Registration Failed</string>
-    <string name="registration_failed_message">Enter a valid email</string>
+    <string name="registration_email_failed_title">Invalid Email</string>
+    <string name="registration_email_mismatch_message">Emails do not match.</string>
+
+    <string name="registration_password_prompt">Enter and confirm a new password.</string>
+    <string name="registration_password_field_hint">Password</string>
+    <string name="registration_password_confirmation_field_hint">Password confirmation</string>
+    <string name="registration_password_failed_title">Password Entry Failed</string>
+    <string name="registration_password_failed_message">Passwords do not match.</string>
+
+    <string name="security_question_selection_prompt">Select a security question:</string>
+
+    <string name="security_answer_button">Create Account</string>
+    <string name="security_answer_failed_title">Invalid Security Answer</string>
+    <string name="security_answer_failed_message">Please enter a valid security answer.</string>
+    
 </resources>
