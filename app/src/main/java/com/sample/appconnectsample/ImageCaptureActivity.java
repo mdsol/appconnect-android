@@ -80,20 +80,23 @@ public class ImageCaptureActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == IMAGE_CAPTURE_INTENT && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            currentImage = (Bitmap) extras.get("data");
+        if (resultCode == RESULT_OK) {
+            if (requestCode == IMAGE_CAPTURE_INTENT) {
+                Bundle extras = data.getExtras();
+                currentImage = (Bitmap) extras.get("data");
+
+            } else if (requestCode == SELECT_IMAGE_INTENT) {
+                Uri selectedImage = data.getData();
+                try {
+                    InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+                    currentImage = BitmapFactory.decodeStream(imageStream);
+
+                } catch (FileNotFoundException exception) {
+                    return;
+                }
+            }
             currentImageView.setImageBitmap(currentImage);
             submitButton.setEnabled(true);
-        }
-        else if (requestCode == SELECT_IMAGE_INTENT && resultCode == RESULT_OK) {
-            Uri selectedImage = data.getData();
-            try {
-                InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-                currentImage = BitmapFactory.decodeStream(imageStream);
-                currentImageView.setImageBitmap(currentImage);
-                submitButton.setEnabled(true);
-            } catch (FileNotFoundException exception) { }
         }
     }
 
@@ -114,7 +117,6 @@ public class ImageCaptureActivity extends AppCompatActivity {
     private class CollectAndSubmitTask extends AsyncTask<Bitmap,Void,Void> {
 
         private ProgressDialog progressDialog;
-        private String message;
         private Exception exception;
 
         @Override
@@ -140,12 +142,11 @@ public class ImageCaptureActivity extends AppCompatActivity {
                 currentImage.compress(Bitmap.CompressFormat.JPEG, 70, stream);
                 byte[] byteArray = stream.toByteArray();
 
-                // the api call to babbage to actually save the data:
+                // The API call to AppConnect to actually save the data:
                 subject.collectData(byteArray, "sample metadata", "image/jpeg");
             }
             catch (Exception ex) {
                 exception = ex;
-                message = ex.getMessage();
             }
             finally {
                 if (datastore != null)
@@ -158,24 +159,17 @@ public class ImageCaptureActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             progressDialog.cancel();
 
-            if (message != null) {
-                Log.e(TAG, message);
-                new AlertDialog.Builder(ImageCaptureActivity.this).
-                    setTitle(R.string.image_capture_error_title).
-                    setMessage(message).
-                    setPositiveButton(R.string.ok_button, null).
-                    show();
-            }
-            else if (exception != null) {
+            if (exception != null) {
                 Log.e(TAG, "The submit task failed", exception);
                 new AlertDialog.Builder(ImageCaptureActivity.this).
                     setTitle(R.string.image_capture_failed_title).
-                    setMessage(R.string.image_capture_failed_message).
+                    setMessage(exception.getMessage()).
                     setPositiveButton(R.string.ok_button, null).
                     show();
+                return;
             }
-            else {
-                new AlertDialog.Builder(ImageCaptureActivity.this).
+
+            new AlertDialog.Builder(ImageCaptureActivity.this).
                     setCancelable(false).
                     setTitle(R.string.image_capture_succeeded_title).
                     setMessage(R.string.image_capture_succeeded_message).
@@ -187,7 +181,7 @@ public class ImageCaptureActivity extends AppCompatActivity {
                         }
                     }).
                     show();
-            }
+
         }
     }
 }

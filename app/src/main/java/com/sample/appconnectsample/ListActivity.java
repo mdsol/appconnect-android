@@ -35,7 +35,7 @@ public class ListActivity extends AppCompatActivity {
     private FormAdapter formAdapter;
     private View progressBar;
     private long userID;
-    private long subjectID;
+    private long subjectID = -1;
     private List<Form> forms = new ArrayList<>();
 
     @Override
@@ -76,7 +76,7 @@ public class ListActivity extends AppCompatActivity {
         // present them organized by subject if desired.
         Datastore datastore = App.getUIDatastore(this);
         for (Subject subject : datastore.getSubjectsForUser(userID)) {
-            if (subjectID == 0)
+            if (subjectID == -1)
                 subjectID = subject.getID();
 
             forms.addAll(datastore.getAvailableFormsForSubject(subject.getID()));
