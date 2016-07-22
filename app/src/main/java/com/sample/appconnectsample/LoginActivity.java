@@ -53,6 +53,22 @@ public class LoginActivity extends AppCompatActivity {
         new LogInTask().execute(username, password);
     }
 
+    public void doRegisterButton(View source) {
+        Intent intent = new Intent(LoginActivity.this, RegistrationEmailActivity.class);
+        startActivityForResult(intent, RegistrationEmailActivity.REGISTRATION_REQUEST, null);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RegistrationEmailActivity.REGISTRATION_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                // The user registered successfully, set the email field, and clear password
+                usernameField.setText(data.getStringExtra("email"));
+                passwordField.setText("");
+            }
+        }
+    }
+
     /**
      * An asynchronous task that logs in the user.
      */

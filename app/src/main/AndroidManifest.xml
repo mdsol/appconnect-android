@@ -19,6 +19,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".RegistrationEmailActivity" />
+
+        <activity android:name=".RegistrationPasswordActivity" />
+
+        <activity android:name=".RegistrationSecurityQuestionActivity" />
+
+        <activity android:name=".RegistrationSecurityAnswerActivity" /> 
+
         <activity android:name=".ListActivity" />
 
         <activity android:name=".OnePageFormActivity" />
