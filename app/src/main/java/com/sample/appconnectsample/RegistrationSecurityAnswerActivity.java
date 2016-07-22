@@ -28,6 +28,11 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
     private EditText securityAnswerField;
     private TextView securityQuestionView;
 
+    String emailToRegister;
+    String passwordToRegister;
+    int securityQuestionIdToRegister;
+    String securityAnswerToRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,20 +64,24 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
 
         createAccountButton.setEnabled(false);
 
-        if (!securityAnswerField.getText().toString().isEmpty()) {
+        // security answer must be at least 2 characters long.
+        if (securityAnswerField.getText().toString().length() > 2) {
             createAccountButton.setEnabled(true);
         }
     }
 
     public void onCreateAccountButton(View source) {
-        new RegisterTask().execute(getIntent().getStringExtra("email"),
-                getIntent().getStringExtra("password"),
-                getIntent().getStringExtra("securityQuestion"),
-                getIntent().getStringExtra("securityAnswer"));
+
+        emailToRegister = getIntent().getStringExtra("email");
+        passwordToRegister = getIntent().getStringExtra("password");
+        securityAnswerToRegister = securityAnswerField.getText().toString();
+        securityQuestionIdToRegister = getIntent().getIntExtra("securityQuestionId", 0);
+
+        new RegisterTask().execute();
     }
 
     /**
-     * An asynchronous task that registers a new user with the email.
+     * An asynchronous task that registers a new user.
      */
     private class RegisterTask extends AsyncTask<String,Void,Void> {
 
@@ -85,11 +94,6 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
 
         @Override
         protected Void doInBackground(String... params) {
-            String email = params[0];
-            String password = params[1];
-            String securityQuestion = params[2];
-            String securityAnswer = params[3];
-
             // *** AppConnect ***
             // Each secondary thread must create its own datastore instance and
             // dispose of it when done
@@ -97,6 +101,7 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
             try {
                 datastore = DatastoreFactory.create();
                 Client client = App.getClient(RegistrationSecurityAnswerActivity.this);
+
                 //User user = client.logIn(datastore, username, password);
 
                 // Babbage objects can't be shared between threads so you must pass

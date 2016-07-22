@@ -33,17 +33,16 @@ public class RegistrationSecurityQuestionActivity extends RegistrationActivity {
         securityQuestionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedQuestion = (String) securityQuestionListView.getAdapter().getItem(position);
-                onSecurityQuestionSelected(selectedQuestion);
+                onSecurityQuestionSelected(position);
             }
         });
     }
 
-    public void onSecurityQuestionSelected(String securityQuestion) {
+    public void onSecurityQuestionSelected(int questionId) {
         Intent intent = new Intent(RegistrationSecurityQuestionActivity.this, RegistrationSecurityAnswerActivity.class);
         intent.putExtra("email", getIntent().getStringExtra("email"));
         intent.putExtra("password", getIntent().getStringExtra("password"));
-        intent.putExtra("securityQuestion", securityQuestion);
+        intent.putExtra("securityQuestionId", questionId);
         startActivityForResult(intent, REGISTRATION_REQUEST);
     }
 }
