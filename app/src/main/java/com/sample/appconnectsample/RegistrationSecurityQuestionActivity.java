@@ -22,6 +22,6 @@ public class RegistrationSecurityQuestionActivity extends RegistrationActivity {
         intent.putExtra("email", getIntent().getStringExtra("email"));
         intent.putExtra("password", getIntent().getStringExtra("password"));
         intent.putExtra("securityQuestion", securityQuestion);
-        startActivityForResult(intent, RegistrationEmailActivity.REGISTRATION_REQUEST);
+        startActivityForResult(intent, RegistrationSecurityAnswerActivity.REGISTRATION_REQUEST);
     }
 }

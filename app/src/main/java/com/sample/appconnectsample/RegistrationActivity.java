@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by kbohlmann on 7/21/16.
  * Simple base class for the dialogue sequence of registration activities.
  */
-public class RegistrationActivity extends AppCompatActivity {
+public abstract class RegistrationActivity extends AppCompatActivity {
 
     public static final int REGISTRATION_REQUEST = 1;
 

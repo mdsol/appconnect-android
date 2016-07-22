@@ -25,19 +25,16 @@ public class RegistrationEmailActivity extends RegistrationActivity {
 
         emailField = (EditText)findViewById(R.id.registration_email_field);
         emailConfirmationField = (EditText)findViewById(R.id.registration_email_confirmation_field);
+        submitButton = (Button)findViewById(R.id.registration_email_submit_button);
 
         validate();
 
         emailField.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -47,22 +44,16 @@ public class RegistrationEmailActivity extends RegistrationActivity {
 
         emailConfirmationField.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
                 validate();
             }
         });
-
-
     }
 
     public void onSubmitButton(View source) {
@@ -79,18 +70,18 @@ public class RegistrationEmailActivity extends RegistrationActivity {
             return;
         }
 
-        // seque to password entry
+        // segue to password entry
         Intent intent = new Intent(RegistrationEmailActivity.this, RegistrationPasswordActivity.class);
         intent.putExtra("email", emailField.getText().toString());
         startActivityForResult(intent, RegistrationEmailActivity.REGISTRATION_REQUEST);
     }
 
     private void validate() {
-        if(emailField.getText().toString().isEmpty() && emailField.getText().toString().equals(emailConfirmationField.getText().toString())) {
-            submitButton.setEnabled(true);
-        } else {
-            submitButton.setEnabled(false);
-        }
-    }
 
+        submitButton.setEnabled(false);
+
+        if (emailField.getText().toString().equals(emailConfirmationField.getText().toString()) &&
+                android.util.Patterns.EMAIL_ADDRESS.matcher(emailField.getText().toString()).matches())
+            submitButton.setEnabled(true);
+    }
 }
