@@ -7,8 +7,21 @@
     android:padding="20dp"
     tools:context=".RegistrationSecurityQuestionActivity">
 
-  <!--just gonna have a single label and a table, no button.
-    need a single string, @string/security_question_selection_prompt-->
+    <TextView
+        android:id="@+id/registration_security_question_prompt_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:text="@string/security_question_selection_prompt" />
+
+    <ListView
+        android:id="@+id/registration_security_question_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registration_security_question_prompt_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
 
 </RelativeLayout>

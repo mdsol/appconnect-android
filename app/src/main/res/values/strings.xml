@@ -59,8 +59,6 @@
     
     <string name="registration_email_field_hint">Email</string>
     <string name="registration_email_confirmation_field_hint">Email confirmation</string>
-    <string name="registration_email_failed_title">Invalid Email</string>
-    <string name="registration_email_mismatch_message">Emails do not match.</string>
 
     <string name="registration_password_prompt">Enter and confirm a new password:</string>
     <string name="registration_password_field_hint">Password</string>
@@ -69,9 +67,21 @@
     <string name="registration_password_rules_body"> - At least 8 characters long\n - At least one upper-case letter\n - At least one lower-case letter\n - At least one numberic digit</string>
 
     <string name="security_question_selection_prompt">Select a security question:</string>
+    <string-array name="security_questions">
+        <item>What year were you born?</item>
+        <item>Last four digits of SSN or Tax ID number?</item>
+        <item>What is your father\'s middle name?</item>
+        <item>What was the name of your first school?</item>
+        <item>Who was your childhood her?</item>
+        <item>What is your favorite pastime?</item>
+        <item>What is your all-time favorite sports team?</item>
+        <item>What is your high school team or mascot?</item>
+        <item>What make was your first car or bike?</item>
+        <item>What is your pet\'s name?</item>
+        <item>What is your mother\'s middle name?</item>
+    </string-array>
 
+    <string name="security_answer_field_hint">Answer</string>
     <string name="security_answer_button">Create Account</string>
-    <string name="security_answer_failed_title">Invalid Security Answer</string>
-    <string name="security_answer_failed_message">Please enter a valid security answer.</string>
-    
+
 </resources>

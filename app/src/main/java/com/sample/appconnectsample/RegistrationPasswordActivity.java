@@ -22,7 +22,6 @@ public class RegistrationPasswordActivity extends RegistrationActivity {
 
     final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,11 +61,10 @@ public class RegistrationPasswordActivity extends RegistrationActivity {
     }
 
     public void onSubmitButton(View source) {
-        // activity with result into security question.
-        Intent intent = new Intent(RegistrationPasswordActivity.this, RegistrationEmailActivity.class);
+        Intent intent = new Intent(RegistrationPasswordActivity.this, RegistrationSecurityQuestionActivity.class);
         intent.putExtra("email", getIntent().getStringExtra("email"));
         intent.putExtra("password", passwordField.getText().toString());
-        startActivityForResult(intent, RegistrationSecurityQuestionActivity.REGISTRATION_REQUEST);
+        startActivityForResult(intent, REGISTRATION_REQUEST);
     }
 
     private void validate() {

@@ -7,7 +7,30 @@
     android:padding="20dp"
     tools:context=".RegistrationSecurityAnswerActivity">
 
+    <TextView
+        android:id="@+id/registration_security_answer_prompt_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textStyle="bold" />
 
-    <!--just the string entry and prompt label.-->
+    <EditText
+        android:id="@+id/registration_security_answer_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/security_answer_field_hint"
+        android:layout_below="@id/registration_security_answer_prompt_view"
+        android:layout_marginTop="8dp"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/registration_create_account_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registration_security_answer_field"
+        android:layout_marginTop="8dp"
+        android:text="@string/security_answer_button"
+        android:onClick="onCreateAccountButton" />
 
 </RelativeLayout>

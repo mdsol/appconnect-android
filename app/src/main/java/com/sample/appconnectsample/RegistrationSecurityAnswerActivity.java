@@ -4,10 +4,14 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.mdsol.babbage.model.Datastore;
 import com.mdsol.babbage.model.DatastoreFactory;
 import com.mdsol.babbage.net.Client;
@@ -20,30 +24,47 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
 
     private static final String TAG = "RegSecAnsActivity";
 
-    private Button submitButton;
+    private Button createAccountButton;
     private EditText securityAnswerField;
+    private TextView securityQuestionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_security_answer_activity);
 
-        //securityAnswer = (EditText)findViewById(R.id.);
-        //submitButton =
+        securityAnswerField = (EditText)findViewById(R.id.registration_security_answer_field);
+        securityQuestionView = (TextView)findViewById(R.id.registration_security_answer_prompt_view);
+        createAccountButton = (Button)findViewById(R.id.registration_create_account_button);
+
+        securityQuestionView.setText(getIntent().getStringExtra("securityQuestion"));
+
+        validate();
+
+        securityAnswerField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                validate();
+            }
+        });
     }
 
-    public void onSubmitButton(View source) {
+    private void validate() {
+
+        createAccountButton.setEnabled(false);
 
         if (!securityAnswerField.getText().toString().isEmpty()) {
-            new AlertDialog.Builder(RegistrationSecurityAnswerActivity.this).
-                    setTitle(R.string.security_answer_failed_title).
-                    setMessage(R.string.security_answer_failed_message).
-                    setPositiveButton(R.string.ok_button, null).
-                    show();
-            return;
+            createAccountButton.setEnabled(true);
         }
+    }
 
-        // intent should have all the stuff.
+    public void onCreateAccountButton(View source) {
         new RegisterTask().execute(getIntent().getStringExtra("email"),
                 getIntent().getStringExtra("password"),
                 getIntent().getStringExtra("securityQuestion"),
@@ -59,7 +80,7 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
 
         @Override
         protected void onPreExecute() {
-            submitButton.setEnabled(false);
+            createAccountButton.setEnabled(false);
         }
 
         @Override
@@ -100,7 +121,7 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
         protected void onPostExecute(Void aVoid) {
 
             if (exception != null) {
-                submitButton.setEnabled(true);
+                createAccountButton.setEnabled(true);
                 Log.e(TAG, "The registration task failed", exception);
                 new AlertDialog.Builder(RegistrationSecurityAnswerActivity.this).
                         setTitle(R.string.registration_failed_title).
@@ -110,7 +131,8 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
                 return;
             }
 
-            // unwind the whole stack of registration activities back to the login screen,
+            // registration succeeded, will now unwind
+            // the stack of registration activities back to the login screen,
             // and populate the login email field.
             Intent returnIntent = new Intent();
             returnIntent.putExtra("email", getIntent().getStringExtra("email"));

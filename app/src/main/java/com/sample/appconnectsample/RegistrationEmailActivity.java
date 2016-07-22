@@ -57,23 +57,9 @@ public class RegistrationEmailActivity extends RegistrationActivity {
     }
 
     public void onSubmitButton(View source) {
-
-        if (emailField.getText().toString().isEmpty())
-            return;
-
-        if (!emailField.getText().toString().equals(emailConfirmationField.getText().toString())) {
-            new AlertDialog.Builder(RegistrationEmailActivity.this).
-                    setTitle(R.string.registration_email_failed_title).
-                    setMessage(R.string.registration_email_mismatch_message).
-                    setPositiveButton(R.string.ok_button, null).
-                    show();
-            return;
-        }
-
-        // segue to password entry
         Intent intent = new Intent(RegistrationEmailActivity.this, RegistrationPasswordActivity.class);
         intent.putExtra("email", emailField.getText().toString());
-        startActivityForResult(intent, RegistrationEmailActivity.REGISTRATION_REQUEST);
+        startActivityForResult(intent, REGISTRATION_REQUEST);
     }
 
     private void validate() {
