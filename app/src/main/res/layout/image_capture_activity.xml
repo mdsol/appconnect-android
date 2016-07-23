@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImageCaptureActivity"
+    android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageCaptureLabel"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="true"
+            android:text="@string/image_capture_header_label" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/currentThumbnail"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imageCaptureLabel"
+            android:minHeight="200dp"
+            android:minWidth="200dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="false"
+            android:layout_below="@+id/currentThumbnail">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/image_capture_take_pic_button"
+                android:id="@+id/takePictureButton"
+                android:layout_gravity="center_horizontal"
+                android:onClick="doTakePictureButton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/image_capture_choose_pic_button"
+                android:id="@+id/chooseImageButton"
+                android:layout_gravity="center_horizontal"
+                android:onClick="doSelectImageButton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/image_capture_submit_button"
+                android:onClick="doSubmitButton"
+                android:layout_alignParentTop="false"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/imageSubmitButton"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/currentThumbnail"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+</RelativeLayout>
