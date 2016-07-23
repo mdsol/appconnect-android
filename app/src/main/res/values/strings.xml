@@ -52,4 +52,15 @@
 
     <string name="sync_failed_title">Load Failed</string>
     <string name="sync_failed_message">An error occurred while loading the subjects and forms.</string>
+
+    <string name="image_capture_header_label">Save an image to AppConnect</string>
+    <string name="image_capture_submit_button">Submit</string>
+    <string name="image_capture_take_pic_button">Take Photo</string>
+    <string name="image_capture_choose_pic_button">Select Image</string>
+    <string name="image_capture_error_title">Image Capture Error</string>
+    <string name="image_capture_failed_title">Image Capture Failed</string>
+    <string name="image_capture_succeeded_title">Image Capture Succeeded</string>
+    <string name="image_capture_succeeded_message">Image successfully saved to AppConnect!</string>
+    <string name="image_capture_saving_message">Saving image to AppConnect...</string>
+
 </resources>
