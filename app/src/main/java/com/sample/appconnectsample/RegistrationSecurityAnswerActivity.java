@@ -63,7 +63,6 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
     }
 
     private void validate() {
-
         createAccountButton.setEnabled(false);
 
         // security answer must be at least 2 characters long.
@@ -73,7 +72,6 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
     }
 
     public void onCreateAccountButton(View source) {
-
         emailToRegister = getIntent().getStringExtra("email");
         passwordToRegister = getIntent().getStringExtra("password");
         securityAnswerToRegister = securityAnswerField.getText().toString();
@@ -111,7 +109,6 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-
             progressBar.setVisibility(View.GONE);
 
             if (exception != null) {

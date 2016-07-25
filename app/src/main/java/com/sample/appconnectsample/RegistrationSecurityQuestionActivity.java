@@ -83,7 +83,6 @@ public class RegistrationSecurityQuestionActivity extends RegistrationActivity {
 
         @Override
         protected void onPreExecute() {
-            // show loading spinner
             progressBar.setVisibility(View.VISIBLE);
         }
 
@@ -107,8 +106,6 @@ public class RegistrationSecurityQuestionActivity extends RegistrationActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-
-            // hide loading spinner
             progressBar.setVisibility(View.GONE);
 
             if (exception != null) {

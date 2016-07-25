@@ -54,7 +54,6 @@ public class RegistrationEmailActivity extends RegistrationActivity {
     }
 
     private void validate() {
-
         submitButton.setEnabled(false);
 
         String email = emailField.getText().toString();

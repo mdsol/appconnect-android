@@ -59,7 +59,6 @@ public class RegistrationPasswordActivity extends RegistrationActivity {
     }
 
     private void validate() {
-
         submitButton.setEnabled(false);
 
         String password = passwordField.getText().toString();
