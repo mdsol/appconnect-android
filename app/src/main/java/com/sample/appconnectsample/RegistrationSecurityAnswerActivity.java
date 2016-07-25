@@ -65,7 +65,7 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
         createAccountButton.setEnabled(false);
 
         // security answer must be at least 2 characters long.
-        if (securityAnswerField.getText().toString().length() > 2) {
+        if (securityAnswerField.getText().toString().length() >= 2) {
             createAccountButton.setEnabled(true);
         }
     }

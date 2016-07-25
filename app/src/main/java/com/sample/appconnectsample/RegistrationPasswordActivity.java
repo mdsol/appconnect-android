@@ -33,31 +33,23 @@ public class RegistrationPasswordActivity extends RegistrationActivity {
 
         validate();
 
-        passwordField.addTextChangedListener(new TextWatcher() {
+        TextWatcher validationListener = new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
                 validate();
             }
-        });
+        };
 
-        passwordConfirmationField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                validate();
-            }
-        });
+        passwordField.addTextChangedListener(validationListener);
+        passwordConfirmationField.addTextChangedListener(validationListener);
     }
 
     public void onSubmitButton(View source) {
@@ -71,8 +63,10 @@ public class RegistrationPasswordActivity extends RegistrationActivity {
 
         submitButton.setEnabled(false);
 
-        if (Pattern.compile(PASSWORD_PATTERN).matcher(passwordField.getText().toString()).matches() &&
-                passwordField.getText().toString().equals(passwordConfirmationField.getText().toString()))
+        String password = passwordField.getText().toString();
+        String passwordConfirmation = passwordConfirmationField.getText().toString();
+
+        if (Pattern.compile(PASSWORD_PATTERN).matcher(password).matches() && password.equals(passwordConfirmation))
             submitButton.setEnabled(true);
     }
 

@@ -29,31 +29,23 @@ public class RegistrationEmailActivity extends RegistrationActivity {
 
         validate();
 
-        emailField.addTextChangedListener(new TextWatcher() {
+        TextWatcher validationListener = new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
                 validate();
             }
-        });
+        };
 
-        emailConfirmationField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                validate();
-            }
-        });
+        emailField.addTextChangedListener(validationListener);
+        emailConfirmationField.addTextChangedListener(validationListener);
     }
 
     public void onSubmitButton(View source) {
@@ -66,8 +58,10 @@ public class RegistrationEmailActivity extends RegistrationActivity {
 
         submitButton.setEnabled(false);
 
-        if (emailField.getText().toString().equals(emailConfirmationField.getText().toString()) &&
-                android.util.Patterns.EMAIL_ADDRESS.matcher(emailField.getText().toString()).matches())
+        String email = emailField.getText().toString();
+        String emailConfirmation = emailConfirmationField.getText().toString();
+
+        if (email.equals(emailConfirmation) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
             submitButton.setEnabled(true);
     }
 }

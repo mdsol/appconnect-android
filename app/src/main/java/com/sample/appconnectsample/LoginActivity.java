@@ -60,12 +60,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == RegistrationEmailActivity.REGISTRATION_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                // The user registered successfully, set the email field, and clear password
-                usernameField.setText(data.getStringExtra("email"));
-                passwordField.setText("");
-            }
+        if (resultCode == RESULT_OK && requestCode == RegistrationEmailActivity.REGISTRATION_REQUEST) {
+            // The user registered successfully, set the email field, and clear password
+            usernameField.setText(data.getStringExtra("email"));
+            passwordField.setText("");
         }
     }
 
