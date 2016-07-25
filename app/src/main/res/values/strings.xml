@@ -72,6 +72,8 @@
     <string name="security_answer_field_hint">Answer</string>
     <string name="security_answer_button">Create Account</string>
     <string name="registration_submitted_message">Registering subject...</string>
+    <string name="registration_succeeded_title">Subject registration successful</string>
+    <string name="registration_succeeded_message">Please enter your password to login.</string>
 
     <string name="image_capture_header_label">Save an image to AppConnect</string>
     <string name="image_capture_submit_button">Submit</string>

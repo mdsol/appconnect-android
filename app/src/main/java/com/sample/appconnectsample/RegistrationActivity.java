@@ -14,7 +14,7 @@ public abstract class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REGISTRATION_REQUEST) {
-            setResult(requestCode, data);
+            setResult(resultCode, data);
             finish();
         }
     }

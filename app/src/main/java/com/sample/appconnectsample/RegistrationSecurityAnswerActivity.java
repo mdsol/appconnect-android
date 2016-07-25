@@ -126,7 +126,7 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
             // the stack of registration activities back to the login screen,
             // and populate the login email field.
             Intent returnIntent = new Intent();
-            returnIntent.putExtra("email", getIntent().getStringExtra("email"));
+            returnIntent.putExtra("email", emailToRegister);
 
             setResult(RESULT_OK, returnIntent);
             finish();
