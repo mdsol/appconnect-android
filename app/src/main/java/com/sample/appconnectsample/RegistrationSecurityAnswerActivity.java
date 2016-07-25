@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.mdsol.babbage.model.Datastore;
-import com.mdsol.babbage.model.DatastoreFactory;
 import com.mdsol.babbage.net.Client;
 import com.mdsol.babbage.net.RequestException;
 
@@ -27,6 +25,7 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
     private Button createAccountButton;
     private EditText securityAnswerField;
     private TextView securityQuestionView;
+    private View progressBar;
 
     String emailToRegister;
     String passwordToRegister;
@@ -43,6 +42,9 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
         createAccountButton = (Button)findViewById(R.id.registration_create_account_button);
 
         securityQuestionView.setText(getIntent().getStringExtra("securityQuestion"));
+
+        progressBar = findViewById(R.id.registration_progress_bar);
+        progressBar.setVisibility(View.GONE);
 
         validate();
 
@@ -90,40 +92,27 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
         @Override
         protected void onPreExecute() {
             createAccountButton.setEnabled(false);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected Void doInBackground(String... params) {
             // *** AppConnect ***
-            // Each secondary thread must create its own datastore instance and
-            // dispose of it when done
-            Datastore datastore = null;
+            // Client call to register the subject. No exception thrown implies success.
             try {
-                datastore = DatastoreFactory.create();
                 Client client = App.getClient(RegistrationSecurityAnswerActivity.this);
-
-                //User user = client.logIn(datastore, username, password);
-
-                // Babbage objects can't be shared between threads so you must pass
-                // them around by ID instead and the receiving code can get its own
-                // copy from its own datastore
-                // userID = user.getID();
+                client.registerSubject(emailToRegister, passwordToRegister, securityQuestionIdToRegister, securityAnswerToRegister);
             }
-            /*
             catch (RequestException ex) {
                 exception = ex;
-            }
-            */
-
-            finally {
-                if (datastore != null)
-                    datastore.dispose();
             }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
+
+            progressBar.setVisibility(View.GONE);
 
             if (exception != null) {
                 createAccountButton.setEnabled(true);

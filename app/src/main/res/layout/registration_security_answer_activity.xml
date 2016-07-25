@@ -7,12 +7,42 @@
     android:padding="20dp"
     tools:context=".RegistrationSecurityAnswerActivity">
 
+    <RelativeLayout
+        android:id="@+id/registration_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@color/colorSecondaryBackground"
+        android:gravity="center_vertical">
+
+        <ProgressBar
+            android:id="@+id/registration_progress_wheel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            style="?android:attr/android:progressBarStyleSmall" />
+
+        <TextView
+            android:id="@+id/registration_progress_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/list_progress_wheel"
+            android:text="@string/registration_submitted_message" />
+
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/registration_security_answer_prompt_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@id/registration_progress_bar"
+        android:layout_marginTop="8dp" />
 
     <EditText
         android:id="@+id/registration_security_answer_field"
