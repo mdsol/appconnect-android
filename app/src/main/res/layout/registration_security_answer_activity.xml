@@ -11,7 +11,7 @@
         android:id="@+id/registration_progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="8dp"
@@ -40,9 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:textStyle="bold"
-        android:layout_below="@id/registration_progress_bar"
-        android:layout_marginTop="8dp" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/registration_security_answer_field"
