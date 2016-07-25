@@ -90,8 +90,7 @@ public class RegistrationSecurityQuestionActivity extends RegistrationActivity {
         @Override
         protected Void doInBackground(String... params) {
             // *** AppConnect ***
-            // Each secondary thread must create its own datastore instance and
-            // dispose of it when done
+            // Request the subject registration security questions and their ids.
             try {
                 Client client = App.getClient(RegistrationSecurityQuestionActivity.this);
 
