@@ -31,6 +31,7 @@
     <string name="login_username_field_hint">Username</string>
     <string name="login_password_field_hint">Password</string>
     <string name="login_log_in_button">Log In</string>
+    <string name="login_register_button">Sign Up</string>
 
     <string name="one_page_form_submit_button">Submit</string>
     <string name="one_page_form_submitting_message">Sending Form…</string>
@@ -52,6 +53,27 @@
 
     <string name="sync_failed_title">Load Failed</string>
     <string name="sync_failed_message">An error occurred while loading the subjects and forms.</string>
+
+    <string name="registration_submit_button">Submit</string>
+    <string name="registration_failed_title">Registration Failed</string>
+    
+    <string name="registration_email_field_hint">Email</string>
+    <string name="registration_email_confirmation_field_hint">Email confirmation</string>
+
+    <string name="registration_password_prompt">Enter and confirm a new password:</string>
+    <string name="registration_password_field_hint">Password</string>
+    <string name="registration_password_confirmation_field_hint">Password confirmation</string>
+    <string name="registration_password_rules_header">Passwords must meet the below criteria:</string>
+    <string name="registration_password_rules_body"> - At least 8 characters long\n - At least one upper-case letter\n - At least one lower-case letter\n - At least one numberic digit</string>
+
+    <string name="security_question_selection_prompt">Select a security question:</string>
+    <string name="security_question_loading_message">Loading security questions...</string>
+
+    <string name="security_answer_field_hint">Answer</string>
+    <string name="security_answer_button">Create Account</string>
+    <string name="registration_submitted_message">Registering subject...</string>
+    <string name="registration_succeeded_title">Subject registration successful</string>
+    <string name="registration_succeeded_message">Please enter your password to login.</string>
 
     <string name="image_capture_header_label">Save an image to AppConnect</string>
     <string name="image_capture_submit_button">Submit</string>
