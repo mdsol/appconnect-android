@@ -18,11 +18,15 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
             android:id="@+id/currentThumbnail"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/imageCaptureLabel"
             android:minHeight="200dp"
-            android:minWidth="200dp" />
+            android:minWidth="200dp"
+            android:maxHeight="300dp"
+            android:maxWidth="300dp"/>
 
         <LinearLayout
             android:orientation="vertical"
