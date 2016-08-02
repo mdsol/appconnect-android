@@ -52,7 +52,7 @@ This SDK also comes with a sample CRF that can be used to exercise the one-page 
 
 This is a guide to the basics of Babbage - intialization, making network requests, and loading data from the datastore.
 
-## Installation
+## Installation using Artifactory
 To install Babbage, include it in the `build.gradle` file, using the credentials provided to you. When you next sync your gradle project, the library will be downloaded and installed.
 
 ```groovy
@@ -69,6 +69,19 @@ repositories {
 ```
 
 An example of how to load these credentials from the `local.properties` file can be found in the sample app's [build.gradle](https://github.com/mdsol/appconnect-android/blob/develop/app/build.gradle) file.
+
+## Installation using local files
+
+If the Babbage library was provided to you in a zip file, update your `build.gradle`, changing the path to point to the file on your local filesystem:
+
+```groovy
+repositories {
+    flatDir {
+        dirs '/path/to/local/aar'
+    }
+}
+```
+
 
 ## Initialization
 Babbage must be initialized with four arguments:
