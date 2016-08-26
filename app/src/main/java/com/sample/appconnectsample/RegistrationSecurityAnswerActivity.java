@@ -116,7 +116,7 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
                 Log.e(TAG, "The registration task failed", exception);
                 new AlertDialog.Builder(RegistrationSecurityAnswerActivity.this).
                         setTitle(R.string.registration_failed_title).
-                        setMessage(exception.getMessage()).
+                        setMessage(getErrorMessageFromException(exception)).
                         setPositiveButton(R.string.ok_button, null).
                         show();
                 return;
