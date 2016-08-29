@@ -16,7 +16,6 @@ public abstract class RegistrationActivity extends AppCompatActivity {
 
     public static final HashMap<RequestException.ErrorCause, String> errorMap = createErrorMap();
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REGISTRATION_REQUEST) {
@@ -33,14 +32,9 @@ public abstract class RegistrationActivity extends AppCompatActivity {
     }
 
     public String getErrorMessageFromException(RequestException exception) {
-
-        String errorMessage = exception.getMessage();
-        String userMessage = errorMap.get(exception.getErrorCause());
-
-        if (userMessage != null)
-        {
-            errorMessage = userMessage;
-        }
+        String errorMessage = errorMap.get(exception.getErrorCause());
+        if (errorMessage == null)
+            errorMessage = exception.getMessage();
 
         return errorMessage;
     }
