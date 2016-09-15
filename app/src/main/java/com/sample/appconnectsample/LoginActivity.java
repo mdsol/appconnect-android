@@ -35,14 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         passwordField = (EditText)findViewById(R.id.login_password_field);
         logInButton = (Button)findViewById(R.id.login_log_in_button);
 
-        Client.setEnvironment(Client.Environment.PRODUCTION);
-
-        // It is possible to communicate with other environments in the Medidata
-        // Platform (although in most cases Production should be used).
-        if (BuildConfig.VALIDATION) {
-            Client.setEnvironment(Client.Environment.VALIDATION);
-        }
-
         usernameField.setText(BuildConfig.DEFAULT_USERNAME);
         passwordField.setText(BuildConfig.DEFAULT_PASSWORD);
     }
@@ -51,6 +43,28 @@ public class LoginActivity extends AppCompatActivity {
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         new LogInTask().execute(username, password);
+    }
+
+    public void doRegisterButton(View source) {
+        Intent intent = new Intent(LoginActivity.this, RegistrationEmailActivity.class);
+        startActivityForResult(intent, RegistrationEmailActivity.REGISTRATION_REQUEST, null);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == RegistrationEmailActivity.REGISTRATION_REQUEST) {
+            // The user registered successfully, set the email field, and clear password
+            usernameField.setText(data.getStringExtra("email"));
+            passwordField.setText("");
+
+            passwordField.requestFocus();
+
+            new AlertDialog.Builder(LoginActivity.this).
+                    setTitle(R.string.registration_succeeded_title).
+                    setMessage(R.string.registration_succeeded_message).
+                    setPositiveButton(R.string.ok_button, null).
+                    show();
+        }
     }
 
     /**

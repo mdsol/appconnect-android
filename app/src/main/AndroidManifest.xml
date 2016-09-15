@@ -3,6 +3,10 @@
     package="com.sample.appconnectsample">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name=".App"
@@ -19,11 +23,25 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".RegistrationEmailActivity" />
+
+        <activity android:name=".RegistrationPasswordActivity" />
+
+        <activity android:name=".RegistrationSecurityQuestionActivity" />
+
+        <activity android:name=".RegistrationSecurityAnswerActivity" /> 
+
         <activity android:name=".ListActivity" />
 
         <activity android:name=".OnePageFormActivity" />
 
         <activity android:name=".MultiPageFormActivity" />
+
+        <activity android:name=".ImageCaptureActivity"/>
+
+        <service
+            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+            android:enabled="true" />
 
     </application>
 

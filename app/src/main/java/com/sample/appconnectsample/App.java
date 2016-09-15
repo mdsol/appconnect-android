@@ -31,12 +31,20 @@ public class App extends Application {
         File dir = getFilesDir();
         byte[] key = new byte[] {
             1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2};
-        Babbage.start(this, dir, key, null);
+        Babbage.start(this, Client.Environment.PRODUCTION, "API Token", dir, dir, key, null);
+
+        // It is possible to communicate with other environments in the Medidata
+        // Platform (although in most cases Production should be used).
+        if (BuildConfig.VALIDATION) {
+            Client.setEnvironment(Client.Environment.VALIDATION);
+        }
 
         // *** AppConnect ***
         // The client that will be used to make requests to the backend can be
         // created once and reused as needed throughout the app
-        client = ClientFactory.getInstance().getClient(Client.Type.NETWORK);
+        client = ClientFactory.getInstance().getClient(Client.Type.HYBRID);
+
+
 
         // *** AppConnect ***
         // In order for object states to be consistent between views, all UI

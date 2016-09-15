@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".RegistrationSecurityAnswerActivity">
+
+    <RelativeLayout
+        android:id="@+id/registration_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@color/colorSecondaryBackground"
+        android:gravity="center_vertical">
+
+        <ProgressBar
+            android:id="@+id/registration_progress_wheel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            style="?android:attr/android:progressBarStyleSmall" />
+
+        <TextView
+            android:id="@+id/registration_progress_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/list_progress_wheel"
+            android:text="@string/registration_submitted_message" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/registration_security_answer_prompt_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/registration_security_answer_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/security_answer_field_hint"
+        android:layout_below="@id/registration_security_answer_prompt_view"
+        android:layout_marginTop="8dp"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/registration_create_account_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registration_security_answer_field"
+        android:layout_marginTop="8dp"
+        android:text="@string/security_answer_button"
+        android:onClick="onCreateAccountButton" />
+
+</RelativeLayout>
