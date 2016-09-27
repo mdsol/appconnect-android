@@ -45,6 +45,7 @@
 
     <string name="login_failed_title">Login Failed</string>
     <string name="login_failed_message">Please verify your credentials and try again.</string>
+    <string name="login_user_not_associated_message">User is not associated with provided API token</string>
 
     <string name="submit_failed_title">Submit Failed</string>
     <string name="submit_failed_message">An error occurred while sending the form responses.</string>
