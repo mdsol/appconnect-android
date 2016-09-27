@@ -115,9 +115,14 @@ public class LoginActivity extends AppCompatActivity {
 
             if (exception != null) {
                 Log.e(TAG, "The log in task failed", exception);
+                int message = R.string.login_failed_message;
+
+                if (exception.getErrorCause() == RequestException.ErrorCause.USER_NOT_ASSOCIATED_WITH_TOKEN)
+                    message = R.string.login_user_not_associated_message;
+
                 new AlertDialog.Builder(LoginActivity.this).
                     setTitle(R.string.login_failed_title).
-                    setMessage(R.string.login_failed_message).
+                    setMessage(message).
                     setPositiveButton(R.string.ok_button, null).
                     show();
             }
