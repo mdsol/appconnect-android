@@ -50,5 +50,5 @@ dependencies {
     compile 'com.amazonaws:aws-android-sdk-s3:2.2.13'
 
     // *** AppConnect ***
-    compile 'com.mdsol:babbage:2017.1.0.54@aar'
+    compile 'com.mdsol:babbage:2017.1.0.55@aar'
 }
