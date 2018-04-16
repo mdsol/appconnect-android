@@ -35,6 +35,7 @@ To get this app up and running:
 ```gradle
 artifactory.username=yourusername
 artifactory.password=yourpassword
+artifactory.server=mdsol.jfrog.io
 ```
 3. Build and run.
 
@@ -63,7 +64,7 @@ repositories {
             password "mypassword"
         }
 
-        url 'https://etlhydra-artifactory-sandbox.imedidata.net/artifactory/p-cloud-release'
+        url 'https://mdsol.jfrog.io/artifactory/p-cloud-release'
     }
 }
 ```
