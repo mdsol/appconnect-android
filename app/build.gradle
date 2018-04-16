@@ -29,8 +29,9 @@ repositories {
     flatDir {
         dirs '/path/to/local/aar'
     }
-    def artifactory_user = properties.getProperty('artifactory.username')
-    def artifactory_pass = properties.getProperty('artifactory.password')
+    def artifactory_user =  properties.getProperty('artifactory.username')
+    def artifactory_pass =  properties.getProperty('artifactory.password')
+    def artifactory_server =  properties.getProperty('artifactory.server')
 
     maven {
         credentials {
@@ -38,7 +39,7 @@ repositories {
             password "${artifactory_pass}"
         }
 
-        url 'https://etlhydra-artifactory-sandbox.imedidata.net/artifactory/p-cloud-release'
+        url "https://${artifactory_server}/artifactory/p-cloud-release"
     }
 }
 
