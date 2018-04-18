@@ -5,7 +5,6 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "24.0.3"
 
     defaultConfig {
         applicationId "com.sample.appconnectsample"
@@ -39,7 +38,7 @@ repositories {
             password "${artifactory_pass}"
         }
 
-        url "https://${artifactory_server}/artifactory/p-cloud-release"
+        url "https://${artifactory_server}/mdsol/p-cloud-release"
     }
 }
 
