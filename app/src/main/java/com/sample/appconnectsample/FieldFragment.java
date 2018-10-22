@@ -23,6 +23,7 @@ import com.mdsol.babbage.model.DictionaryResponse;
 import com.mdsol.babbage.model.DiscreteField;
 import com.mdsol.babbage.model.Field;
 import com.mdsol.babbage.model.NumericField;
+import com.mdsol.babbage.model.NumericResponse;
 import com.mdsol.babbage.model.RaveDateFormat;
 import com.mdsol.babbage.model.ScaleField;
 import com.mdsol.babbage.model.TextField;
@@ -302,7 +303,7 @@ public class FieldFragment extends Fragment {
             }
             case NUMERIC: {
                 NumericField nf = (NumericField)field;
-                long[] response = nf.stringToResponse(text, decimalCharacter);
+                NumericResponse response = nf.stringToResponse(text, decimalCharacter);
                 nf.setSubjectResponse(response);
                 break;
             }
@@ -346,7 +347,7 @@ public class FieldFragment extends Fragment {
                 ScaleField sf = (ScaleField)field;
                 int response = responseScaleSlider.getProgress() + sf.getMinimumResponse();
                 responseScaleLabel.setText(String.valueOf(response));
-                sf.setSubjectResponse(response);
+                sf.setSubjectResponse((double)response);
                 break;
             }
         }

@@ -145,27 +145,54 @@ public class ListActivity extends AppCompatActivity {
             // Each secondary thread must create its own datastore instance and
             // dispose of it when done
             Datastore datastore = null;
-            try {
-                datastore = DatastoreFactory.create();
-                User user = datastore.getUser(userID);
 
-                // Get the subjects for the current user and then iterate over
-                // the subjects to sync their forms. The objects returned from
-                // these methods are only usable during the lifetime of this
-                // temporary datastore.
-                Client client = App.getClient(ListActivity.this);
-                for (Subject subject : client.loadSubjects(user)) {
-                    if (subject.getStudy() != null && subject.getStudy().isRaveEnabled())
-                        client.loadForms(subject);
+            datastore = DatastoreFactory.create();
+            User user = datastore.getUser(userID);
+
+            // Get the subjects for the current user and then iterate over
+            // the subjects to sync their forms. The objects returned from
+            // these methods are only usable during the lifetime of this
+            // temporary datastore.
+            Client client = App.getClient(ListActivity.this);
+
+            List<Subject> subjects = null;
+            try {
+                client.loadUserData(user);
+                subjects = user.getSubjects();
+            } catch (RequestException ex) {
+                exception = ex;
+            } finally {
+                if(subjects == null){
+                    return null;
+                }
+
+                for (Subject subject : subjects) {
+                    try {
+                        client.loadStudyConfiguration(subject.getStudy(), user);
+                    } catch (RequestException ex) {
+                        exception = ex;
+                        break;
+                    }
                 }
             }
-            catch (RequestException ex) {
-                exception = ex;
+
+            // Load the forms for each subject
+            if (subjects != null) {
+                for (Subject subject : subjects) {
+                    try {
+                        client.loadForms(subject);
+                    }
+                    catch (RequestException ex) {
+                        exception = ex;
+                        break;
+                    }
+                }
             }
-            finally {
-                if (datastore != null)
-                    datastore.dispose();
+
+            if (datastore != null) {
+                datastore.dispose();
             }
+
             return null;
         }
 
@@ -175,10 +202,10 @@ public class ListActivity extends AppCompatActivity {
             if (exception != null) {
                 Log.e(TAG, "The sync task failed", exception);
                 new AlertDialog.Builder(ListActivity.this).
-                    setTitle(R.string.sync_failed_title).
-                    setMessage(R.string.sync_failed_message).
-                    setPositiveButton(R.string.ok_button, null).
-                    show();
+                        setTitle(R.string.sync_failed_title).
+                        setMessage(R.string.sync_failed_message).
+                        setPositiveButton(R.string.ok_button, null).
+                        show();
             }
             else {
                 populateForms();
