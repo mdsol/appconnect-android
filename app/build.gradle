@@ -38,17 +38,16 @@ repositories {
             password "${artifactory_pass}"
         }
 
-        url "https://${artifactory_server}/mdsol/p-cloud-release"
+        url "https://${artifactory_server}/artifactory/p-cloud-release"
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-
-    compile 'com.amazonaws:aws-android-sdk-s3:2.2.13'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:23.1.1'
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.2.13'
 
     // *** AppConnect ***
-    compile 'com.mdsol:babbage:2017.1.0.55@aar'
+    implementation 'com.mdsol:babbage:2018.2.0.17@aar'
 }
