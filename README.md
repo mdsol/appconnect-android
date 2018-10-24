@@ -132,8 +132,9 @@ List<Subject> subject = user.getSubjects();
 for (Subject subject : subjects) {
     client.loadStudyConfiguration(subject.getStudy(), user);
 }
+
 for (Subject subject : subjects) {
-    List<Form> forms = loadForms(subject)
+    client.loadForms(subject)
 }
 ```
 
