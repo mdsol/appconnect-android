@@ -35,7 +35,7 @@ To get this app up and running:
 ```gradle
 artifactory.username=yourusername
 artifactory.password=yourpassword
-artifactory.server=mdsol.jfrog.io
+artifactory.server=etlhydra-artifactory-sandbox.imedidata.net
 ```
 3. Build and run.
 
@@ -64,7 +64,7 @@ repositories {
             password "mypassword"
         }
 
-        url 'https://mdsol.jfrog.io/artifactory/p-cloud-release'
+        url "https://${artifactory_server}/artifactory/p-cloud-release"
     }
 }
 ```
@@ -127,8 +127,14 @@ Babbage talks to back-end services to retrieve all information, such as users, s
 The following code replicates this process:
 ```java
 User user = client.logIn(datastore, username, password);
-List<Subject> subject = client.loadSubjects(user).get(0)
-List<Form> forms = loadForms(subject)
+client.loadUserData(user);
+List<Subject> subject = user.getSubjects();
+for (Subject subject : subjects) {
+    client.loadStudyConfiguration(subject.getStudy(), user);
+}
+for (Subject subject : subjects) {
+    List<Form> forms = loadForms(subject)
+}
 ```
 
 >**Important Considerations**
