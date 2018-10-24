@@ -49,5 +49,5 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-s3:2.2.13'
 
     // *** AppConnect ***
-    implementation 'com.mdsol:babbage:2018.2.0.17@aar'
+    implementation 'com.mdsol:babbage:2018.2.0.18@aar'
 }
