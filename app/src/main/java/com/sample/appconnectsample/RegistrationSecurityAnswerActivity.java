@@ -114,9 +114,25 @@ public class RegistrationSecurityAnswerActivity extends RegistrationActivity {
             if (exception != null) {
                 createAccountButton.setEnabled(true);
                 Log.e(TAG, "The registration task failed", exception);
+                String errorMessage = "Unable to Register User";
+
+                switch(exception.getErrorCause()) {
+                    case INVALID_REGISTRATION_TOKEN:
+                        errorMessage = "Invalid Registration Token";
+                        break;
+                    case EMAIL_ALREADY_EXISTS:
+                        errorMessage = "User Already Exists";
+                        break;
+                    case AUTHENTICATION_FAILURE:
+                        errorMessage = "iMedidata Authentication Error";
+                        break;
+                    default:
+                        break;
+                }
+
                 new AlertDialog.Builder(RegistrationSecurityAnswerActivity.this).
                         setTitle(R.string.registration_failed_title).
-                        setMessage(getErrorMessageFromException(exception)).
+                        setMessage(errorMessage).
                         setPositiveButton(R.string.ok_button, null).
                         show();
                 return;
