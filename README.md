@@ -35,7 +35,7 @@ To get this app up and running:
 ```gradle
 artifactory.username=yourusername
 artifactory.password=yourpassword
-artifactory.server=etlhydra-artifactory-sandbox.imedidata.net
+artifactory.server=mdsol.jfrog.io
 ```
 3. Build and run.
 
