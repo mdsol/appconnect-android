@@ -38,7 +38,7 @@ repositories {
             password "${artifactory_pass}"
         }
 
-        url "https://${artifactory_server}/artifactory/p-cloud-release"
+        url "https://${artifactory_server}/mdsol/p-cloud-release"
     }
 }
 
