@@ -14,7 +14,7 @@ In particular, this project shows how to:
   * All fields on one page, where you use the StepSequencer only at the end.
   * One field per page, where you use the StepSequencer to navigate from field to field.
   
->See [Medidata AppConnect Home](https://learn.mdsol.com/display/APPCONNECTprd/Medidata+AppConnect+Home) for more information. 
+>See [Medidata AppConnect Home](https://learn.mdsol.com/api/appconnect/rave-appconnect-sdks-95295808.html) for more information. 
 
 ## Prerequisites
 
@@ -147,4 +147,4 @@ for (Subject subject : subjects) {
 
 ## API Documentation ##
 
-Please refer to the documentation for detailed instruction on how to use the various APIs.
+Refer to the [AppConnect documentation](https://learn.mdsol.com/api/appconnect/rave-appconnect-sdks-95295808.html) for detailed instructions on how to use the various APIs.
